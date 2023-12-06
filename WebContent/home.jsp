@@ -247,6 +247,35 @@
           </nav>
         </div>
       </header>
+      
+      <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10218.723941948408!2d103.6410695922391!3d1.503180835979977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da9f7069682557%3A0x65f562b4eb663916!2sIskandar+Puteri%2C+Johor!5e0!3m2!1sen!2smy!4v1670349666770!5m2!1sen!2smy" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+          <div class="mb-4">
+          <h2>News</h2>
+          <p><b>BENGKEL PENILAIAN GERAN KOMUNITI ISKANDAR PUTERI RENDAH KARBON 3.0<br>23-24 Mei 2023 |   Selasa - Rabu</b><br></p>
+          <p>Majlis Bandaraya Iskandar Puteri (MBIP) bersama-sama rakan strategik daripada Universiti Teknologi Malaysia (UTM), Jabatan Pendidikan Negeri Johor (JPNJ), Pihak Berkuasa Wilayah Pembangunan Iskandar (IRDA), dan SWM Environment Sdn Bhd telah menganjurkan Bengkel Penilaian Geran Komuniti Iskandar Puteri Rendah Karbon 3.0 bersama .. <a href="home.jsp">READ MORE</a></p>
+          <p><b>BENGKEL PENILAIAN GERAN KOMUNITI ISKANDAR PUTERI RENDAH KARBON 3.0<br>23-24 Mei 2023 |   Selasa - Rabu</b><br></p>
+          <p>Majlis Bandaraya Iskandar Puteri (MBIP) bersama-sama rakan strategik daripada Universiti Teknologi Malaysia (UTM), Jabatan Pendidikan Negeri Johor (JPNJ), Pihak Berkuasa Wilayah Pembangunan Iskandar (IRDA), dan SWM Environment Sdn Bhd telah menganjurkan Bengkel Penilaian Geran Komuniti Iskandar Puteri Rendah Karbon 3.0 bersama .. <a href="home.jsp">READ MORE</a></p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="statistics-container">
+            <h2>GHG Emissions</h2>
+            <p>Stationary Energy: xx</p>
+            <p>	Transportation: xx</p>
+            <p>Waste: xx</p>
+            <h2>Carbon Emission Status</h2>
+            <p>2019 : xx</p>
+            <p>2020 : xx</p>
+          </div>
+        </div>
+      </div>
+     </div>
+      
       <footer class="footer">
         <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io">Bootstrap Admin Template</a> © 2023 creativeLabs.</div>
         <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI UI Components</a></div>

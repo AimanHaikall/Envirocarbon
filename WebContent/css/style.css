@@ -3356,8 +3356,8 @@ html:not([dir=rtl]) .form-check-inline .form-check-input ~ .invalid-feedback {
 
 .btn-primary {
   --cui-btn-color: rgba(255, 255, 255, 0.87);
-  --cui-btn-bg: #321fdb;
-  --cui-btn-border-color: #321fdb;
+  --cui-btn-bg: #0d6efd;
+  --cui-btn-border-color: #0d6efd;
   --cui-btn-hover-color: rgba(255, 255, 255, 0.87);
   --cui-btn-hover-bg: #5141e0;
   --cui-btn-hover-border-color: #4735df;
