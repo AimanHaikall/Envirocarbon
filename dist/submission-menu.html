@@ -93,83 +93,51 @@
       <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
     </div>
     <div class="wrapper d-flex flex-column min-vh-100 bg-light">
-      <header class="header header-sticky mb-4">
-        <div class="container-fluid">
-          <button class="header-toggler px-md-0 me-md-3" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
-            <svg class="icon icon-lg">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
-            </svg>
-          </button><a class="header-brand d-md-none" href="#">
-            <svg width="118" height="46" alt="CoreUI Logo">
-              <use xlink:href="assets/brand/coreui.svg#full"></use>
-            </svg></a>
+      <header class="header header-sticky mb-1">
+        <div class="logo">
+          <img src="assets/img/envirocarbon-logo.png" alt="Logo">
+        </div>
+        <div class="title " >
+          <h1 style="max-width: 80%;">Pertandingan Kalendar Masyarakat Rendah Karbon Iskandar Puteri 2022</h1>
         </div>
         <div class="header-divider"></div>
         <div class="container-fluid">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb my-0 ms-2">
               <li class="breadcrumb-item">
-                <!-- if breadcrumb is single--><span>Account</span>
+                <!-- if breadcrumb is single--><span>Home</span>
               </li>
+              <li class="breadcrumb-item active"><span>Submission</span></li>
             </ol>
           </nav>
         </div>
       </header>
       <div class="container">
-        <div class="logo">
-          <img src="assets/img/envirocarbon-logo.png" alt="Logo">
-        </div>
-    
-        <div class="title">
-          Edit Profile
-        </div>
-    
-        <form>
-          <div class="form-group">
-            <label for="profilepicture">Profile Picture:</label>
-            <input type="file" id="profilepicture" name="profilepicture">
-          </div>
-
-          <div class="form-group">
-            <label for="ic">User Identification:</label>
-            <input type="file" id="uc" name="ic" required>
-          </div>
-
-          <div class="form-group">
-            <label for="firstname">First Name:</label>
-            <input type="text" id="firstname" name="firstname" placeholder="Enter your first name*" required>
-          </div>
-
-          <div class="form-group">
-            <label for="lastname">Last Name:</label>
-            <input type="text" id="lastname" name="lastname" placeholder="Enter your last name*" required>
-          </div>
-
-          <div class="form-group">
-            <label for="addressline1">Address:</label>
-            <div class="address-group">
-              <input type="text" id="addressline1" name="addressline1" placeholder="Line 1*" required>
-              <input type="text" id="addressline2" name="addressline2" placeholder="Line 2">
-              <input type="text" id="addressline3" name="addressline3" placeholder="Line 3">
-            </div>
-          </div>
-    
-          <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email*" required>
-          </div>
-    
-          <div class="form-group">
-            <label for="phonenumber">Phone Number:</label>
-            <input type="phonenumber" id="phonenumber" name="phonenumber" placeholder="Enter your phone number*" required>
-          </div>
-    
-          <div class="button-container">
-            <button type="button" class="btn btn-secondary"><span class="cil-contrast"></span> Cancel</button>
-            <button type="submit" class="btn btn-success"><span class="cil-contrast"></span> Save</button>
-          </div>
-        </form>
+        <h1 class="page-title">Submit Your:</h1>
+        <ul class="submission-list">
+          <!-- Electric Consumption -->
+          <li class="submission-item">
+            <a href="electric.html"><img class="category-image" src="assets/img/electric.jpg" alt="Electric Image"></a>
+            <a href="electric.html"><span class="title">Electric Consumption</span></a>
+              <span class="status-complete">Completed</span>
+          </li>
+  
+          <!-- Water Consumption -->
+          <li class="submission-item">
+            <a href="water.html"><img class="category-image" src="assets/img/water.jpg" alt="Water Image"></a>
+            <a href="water.html"><span class="title">Water Consumption</span></a>
+              <span class="status-incomplete">Incomplete</span>
+          </li>
+  
+          <!-- Recycle Activity -->
+          <li class="submission-item">
+            <a href="recycle.html"><img class="category-image" src="assets/img/recycle.jpg" alt="Recycle Image"></a>
+            <a href="recycle.html"><span class="title">Recycle Activity</span></a>
+              <span class="status-complete">Completed</span>
+          </li>
+        </ul>
       </div>
+      
       <div class="body flex-grow-1 px-3">
         <div class="container-lg">
         </div>
