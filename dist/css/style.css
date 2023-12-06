@@ -8651,6 +8651,9 @@ html:not([dir=rtl]) .sidebar-nav .nav-group-items .nav-link .nav-icon {
   .sidebar-narrow-unfoldable:not(:hover) .sidebar-form,
   .sidebar-narrow .sidebar-form,
   .sidebar-narrow-unfoldable:not(:hover) .sidebar-header,
+  .sidebar-narrow-unfoldable:not(:hover) .user-name,
+  .sidebar-narrow-unfoldable:not(:hover) .user-role,
+  .sidebar-narrow-unfoldable:not(:hover) .user-email,
   .sidebar-narrow .sidebar-header {
     height: 0 !important;
     padding: 0;
@@ -8658,6 +8661,12 @@ html:not([dir=rtl]) .sidebar-nav .nav-group-items .nav-link .nav-icon {
     visibility: hidden;
     opacity: 0;
   }
+
+  .sidebar-narrow-unfoldable:not(:hover) .profile-picture img{
+    width: 35px;
+    height: 35px;
+  }
+  
   .sidebar-narrow-unfoldable:not(:hover) .sidebar-toggler, .sidebar-narrow .sidebar-toggler {
     position: fixed;
     bottom: 0;
