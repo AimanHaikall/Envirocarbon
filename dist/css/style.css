@@ -14211,10 +14211,14 @@ submission-list {
   border-radius: 8px;
 }
 
+.leaderboard-header{
+  font-weight: bold;
+}
+
 .leaderboard-header,
 .leaderboard-item {
   display: grid;
-  grid-template-columns: 1fr 2fr 3fr 2fr 2fr 2fr 2fr;
+  grid-template-columns: 1fr 1fr 2fr 3fr 2fr 2fr 2fr 2fr;
   align-items: center;
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
