@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html><!--
 * CoreUI - Free Bootstrap Admin Template
 * @version v4.2.2
@@ -119,8 +122,7 @@
         <div class="logo">
           <img src="assets/img/envirocarbon-logo.png" alt="Logo">
         </div>
-    
-        <div class="title">
+        <div class="editprofile-title">
           Edit Profile
         </div>
     
