@@ -14034,3 +14034,47 @@ html:not([dir=rtl]) .wrapper {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+.profile-section {
+  display: flex;
+  flex-direction: column; /* Change flex direction to column */
+  /* align-items: center; */
+  padding: 25px 25px;
+}
+
+.profile-picture img {
+  width: 90px; /* Adjust the size of the profile picture */
+  height: 90px;
+  border-radius: 6px;
+  margin-bottom: 10px; /* Adjust as needed */
+}
+
+.user-info {
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+}
+
+.user-name {
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+.user-role {
+  font-size: 14px; /* Adjust as needed */
+  margin-left: auto;
+  margin-top: 7px;
+}
+
+.user-email {
+  font-size: 14px; /* Adjust as needed */
+  font-style:oblique;
+}
+
+.sidebar-narrow-unfoldable:not(:hover) .profile-section{
+    padding: 20px 0px 0px 16px;
+  }
+
+  .sidebar-narrow-unfoldable:not(:hover) .profile-picture img{
+    width: 35px;
+    height: 35px;
+  }
