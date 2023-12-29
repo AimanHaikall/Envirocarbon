@@ -18,6 +18,30 @@ public class Recycle {
 	
 	@Column(name="weight_rm")
 	private int weightRm;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getWeightKg() {
+		return weightKg;
+	}
+
+	public void setWeightKg(int weightKg) {
+		this.weightKg = weightKg;
+	}
+
+	public int getWeightRm() {
+		return weightRm;
+	}
+
+	public void setWeightRm(int weightRm) {
+		this.weightRm = weightRm;
+	}
 	
 
 }
