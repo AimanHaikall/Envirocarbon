@@ -1,0 +1,5 @@
+com\model\Water.class
+com\model\Electric.class
+com\model\Recycle.class
+com\model\User.class
+com\model\Admin.class
