@@ -40,7 +40,7 @@ public class User {
 	@Column(name="category")
 	private String category;
 	
-	@Column(name="housholdNum")
+	@Column(name="householdNum")
 	private String householdNum;
 
 	public int getId() {

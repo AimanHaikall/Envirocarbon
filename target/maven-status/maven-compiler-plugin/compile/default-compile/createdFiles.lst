@@ -1,4 +1,5 @@
 com\model\Water.class
+com\controller\HomeController.class
 com\model\Electric.class
 com\model\Recycle.class
 com\model\User.class
