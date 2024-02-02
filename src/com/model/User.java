@@ -48,7 +48,7 @@ public class User {
 	@Column(name="householdNum")
 	private String householdNum;
 	
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Electric> electricList = new ArrayList<>();
 
 	public int getId() {

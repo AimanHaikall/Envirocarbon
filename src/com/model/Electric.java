@@ -33,8 +33,9 @@ public class Electric {
 	private Date month;
 	
 	@ManyToOne
-    @JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
+	
 	public int getId() {
 		return id;
 	}
