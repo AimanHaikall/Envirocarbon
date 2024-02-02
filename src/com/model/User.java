@@ -1,8 +1,13 @@
 package com.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -42,6 +47,9 @@ public class User {
 	
 	@Column(name="householdNum")
 	private String householdNum;
+	
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
+    private List<Electric> electricList = new ArrayList<>();
 
 	public int getId() {
 		return id;
@@ -130,7 +138,17 @@ public class User {
 	public void setHouseholdNum(String householdNum) {
 		this.householdNum = householdNum;
 	}
-	
-	
+	public List<Electric> getElectricList() {
+        return electricList;
+    }
+
+    public void setElectricList(List<Electric> electricList) {
+        this.electricList = electricList;
+    }
+
+    public void addElectric(Electric electric) {
+        electric.setUser(this);
+        this.electricList.add(electric);
+    }
 	
 }

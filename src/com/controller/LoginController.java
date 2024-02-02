@@ -1,33 +1,43 @@
 package com.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-@RequestMapping("/")
+import bdUtil.UserDAO;
+
 @Controller
+@RequestMapping("/login")
 public class LoginController {
 
-    private boolean isLoggedIn = false;
+    private final UserDAO loginDao;
 
-    @RequestMapping("/")
-    public String loginController(HttpServletRequest request, HttpServletResponse response) {
-        if (isLoggedIn) {
-            return "redirect:/home";
-        } else {
-            return "redirect:/login";
-        }
+    public LoginController() {
+        this.loginDao = new UserDAO();
     }
 
-    @RequestMapping("/home")
-    public String homePage(HttpServletRequest request, HttpServletResponse response) {
-        return "home";
-    }
-    
-    @RequestMapping("/login")
-    public String loginPage(HttpServletRequest request, HttpServletResponse response) {
+    @GetMapping
+    public String showLoginForm() {
         return "login";
+    }
+
+    @PostMapping("/validate")
+    public String authenticate(@RequestParam("username") String username,
+                               @RequestParam("password") String password,
+                               Model model) {
+        try {
+            if (loginDao.validate(username, password)) {
+                return "home";
+            } else {
+                model.addAttribute("error", "Login not successful.");
+                return "login";
+            }
+        } catch (Exception e) {
+            model.addAttribute("error", "An error occurred during login.");
+            return "login";
+        }
     }
 }
