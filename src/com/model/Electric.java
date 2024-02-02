@@ -1,5 +1,7 @@
 package com.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,6 +28,9 @@ public class Electric {
 	
 	@Column(name="consumption_rm")
 	private double consumptionRM;
+	
+	@Column(name="month")
+	private Date month;
 	
 	@ManyToOne
     @JoinColumn(name = "user_id")
@@ -68,6 +73,14 @@ public class Electric {
 
 	public void setConsumptionRM(double consumptionRM) {
 		this.consumptionRM = consumptionRM;
+	}
+	
+	public Date getMonth() {
+		return month;
+	}
+
+	public void setMonth(Date month) {
+		this.month = month;
 	}
     
 	public void setUser(User user) {

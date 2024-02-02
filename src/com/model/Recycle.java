@@ -1,5 +1,7 @@
 package com.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,6 +20,9 @@ public class Recycle {
 	
 	@Column(name="weight_rm")
 	private int weightRm;
+	
+	@Column(name="month")
+	private Date month;
 
 	public int getId() {
 		return id;
@@ -41,6 +46,14 @@ public class Recycle {
 
 	public void setWeightRm(int weightRm) {
 		this.weightRm = weightRm;
+	}
+	
+	public Date getMonth() {
+		return month;
+	}
+
+	public void setMonth(Date month) {
+		this.month = month;
 	}
 	
 

@@ -1,5 +1,7 @@
 package com.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -24,6 +26,9 @@ public class Water {
 	
 	@Column(name="consumption_rm")
 	private double consumptionRM;
+	
+	@Column(name="month")
+	private Date month;
 
 	public int getId() {
 		return id;
@@ -63,6 +68,14 @@ public class Water {
 
 	public void setConsumptionRM(double consumptionRM) {
 		this.consumptionRM = consumptionRM;
+	}
+	
+	public Date getMonth() {
+		return month;
+	}
+
+	public void setMonth(Date month) {
+		this.month = month;
 	}
 	
 	
