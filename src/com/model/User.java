@@ -18,11 +18,9 @@ public class User {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="firstname")
-	private String firstname;
+	@Column(name="name")
+	private String name;
 	
-	@Column(name="lastname")
-	private String lastname;
 	
 	@Column(name="username")
 	private String username;
@@ -36,17 +34,6 @@ public class User {
 	@Column(name="email")
 	private String email;
 	
-	@Column(name="status_application")
-	private String statusApplication;
-	
-	@Column(name="institution")
-	private String institution;
-	
-	@Column(name="category")
-	private String category;
-	
-	@Column(name="householdNum")
-	private String householdNum;
 	
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Electric> electricList = new ArrayList<>();
@@ -59,21 +46,14 @@ public class User {
 		this.id = id;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public String getName() {
+		return name;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getLastname() {
-		return lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
 
 	public String getUsername() {
 		return username;
@@ -107,37 +87,6 @@ public class User {
 		this.email = email;
 	}
 
-	public String getStatusApplication() {
-		return statusApplication;
-	}
-
-	public void setStatusApplication(String statusApplication) {
-		this.statusApplication = statusApplication;
-	}
-
-	public String getInstitution() {
-		return institution;
-	}
-
-	public void setInstitution(String institution) {
-		this.institution = institution;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public String getHouseholdNum() {
-		return householdNum;
-	}
-
-	public void setHouseholdNum(String householdNum) {
-		this.householdNum = householdNum;
-	}
 	public List<Electric> getElectricList() {
         return electricList;
     }

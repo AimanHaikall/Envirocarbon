@@ -1,6 +1,9 @@
 com\model\Water.class
-com\controller\HomeController.class
+com\controller\LoginController.class
+com\controller\RouterController.class
+bdUtil\UserDAO.class
 com\model\Electric.class
-com\model\Recycle.class
 com\model\User.class
+bdUtil\HibernateCF.class
+com\model\Recycle.class
 com\model\Admin.class

@@ -18,11 +18,9 @@ public class Admin {
 	@Column(name="email")
 	private String email;
 	
-	@Column(name="firstname")
-	private String firstname;
-	
-	@Column(name="lastname")
-	private String lastname;
+	@Column(name="name")
+	private String name;
+
 
 	public int getId() {
 		return id;
@@ -56,21 +54,15 @@ public class Admin {
 		this.email = email;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public String getName() {
+		return name;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getLastname() {
-		return lastname;
-	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
 	
 	
 }
