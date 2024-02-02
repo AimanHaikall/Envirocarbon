@@ -16,10 +16,10 @@ public class Recycle {
 	private int id;
 	
 	@Column(name="weight_kg")
-	private int weightKg;
+	private double weightKg;
 	
 	@Column(name="weight_rm")
-	private int weightRm;
+	private double weightRm;
 	
 	@Column(name="month")
 	private Date month;
@@ -32,7 +32,7 @@ public class Recycle {
 		this.id = id;
 	}
 
-	public int getWeightKg() {
+	public double getWeightKg() {
 		return weightKg;
 	}
 
@@ -40,7 +40,7 @@ public class Recycle {
 		this.weightKg = weightKg;
 	}
 
-	public int getWeightRm() {
+	public double getWeightRm() {
 		return weightRm;
 	}
 
