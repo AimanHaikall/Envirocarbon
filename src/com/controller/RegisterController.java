@@ -30,43 +30,39 @@ public class RegisterController {
 	}
 
 	@PostMapping()
-	public ModelAndView register(@RequestParam("name") String name,
-	                             @RequestParam("username") String username,
-	                             @RequestParam("password") String password,
-	                             @RequestParam("phoneNum") String phoneNum,
-	                             @RequestParam("email") String email,
-	                             @RequestParam("cpassword") String cpassword,
-	                             Model model) {
-	    ModelAndView modelAndView = new ModelAndView();
+	public ModelAndView register(@RequestParam("name") String name, @RequestParam("username") String username,
+			@RequestParam("password") String password, @RequestParam("phoneNum") String phoneNum,
+			@RequestParam("email") String email, @RequestParam("cpassword") String cpassword, Model model) {
+		ModelAndView modelAndView = new ModelAndView();
 
-	    try {
-	        if (password.equals(cpassword)) {
-	            User newUser = new User();
-	            newUser.setName(name);
-	            newUser.setUsername(username);
-	            newUser.setPassword(password);
-	            newUser.setPhoneNum(phoneNum);
-	            newUser.setEmail(email);
+		try {
+			if (password.equals(cpassword)) {
+				User newUser = new User();
+				newUser.setName(name);
+				newUser.setUsername(username);
+				newUser.setPassword(password);
+				newUser.setPhoneNum(phoneNum);
+				newUser.setEmail(email);
 
-	            try {
-	            	registerDao.saveUser(newUser);
+				try {
+					registerDao.saveUser(newUser);
 
-		            modelAndView.setViewName("redirect:/home");
-	            }
-	            catch(Exception e){modelAndView.setViewName("redirect:/register");
-	            }
-	            
-	        } else {
-	            model.addAttribute("error", "Passwords do not match.");
-	            modelAndView.setViewName("register");
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        model.addAttribute("error", "An error occurred during registration.");
-	        modelAndView.setViewName("register");
-	    }
+					modelAndView.setViewName("redirect:/login");
+				} catch (Exception e) {
+					modelAndView.setViewName("redirect:/register");
+				}
 
-	    return modelAndView;
+			} else {
+				model.addAttribute("error", "Passwords do not match.");
+				modelAndView.setViewName("register");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("error", "An error occurred during registration.");
+			modelAndView.setViewName("register");
+		}
+
+		return modelAndView;
 	}
 
 }
