@@ -1,16 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
-<!DOCTYPE html><!--
-    * CoreUI - Free Bootstrap Admin Template
-    * @version v4.2.2
-    * @link https://coreui.io/product/free-bootstrap-admin-template/
-    * Copyright (c) 2023 creativeLabs Łukasz Holeczek
-    * Licensed under MIT (https://github.com/coreui/coreui-free-bootstrap-admin-template/blob/main/LICENSE)
-    --><!-- Breadcrumb-->
+<!DOCTYPE html>
     <html lang="en">
       <head>
-        <base href="./">
+        <base href="<%= request.getContextPath() %>/">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -160,7 +154,7 @@
                         </table>
                       </div>
                       <div class="text-end mt-3">
-                        <a href="waterJanFeb.jsp" class="btn btn-primary">Next Page</a>
+                        <a href="/EnviroCarbon/water/add" class="btn btn-primary">Next Page</a>
                     </div>
                 </div>
                
@@ -185,4 +179,4 @@
         </script>
     
       </body>
-    </html>
+    </html>
