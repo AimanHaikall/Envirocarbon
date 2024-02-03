@@ -15,35 +15,27 @@ import com.model.User;
 
 public class UserDAO {
 
-	private final HttpServletRequest request;
-	
-	public UserDAO(HttpServletRequest request) {
-		super();
-		this.request = request;
-	}
-	
 	public void saveUser(User user) throws RuntimeException {
-	    Transaction transaction = null;
-	    try (Session session = HibernateCF.getSessionFactory().openSession()) {
-	        // Check if the username, email, or phone number already exists
-	        if (isUserExists(session, user.getUsername(), user.getEmail(), user.getPhoneNum())) {
-	            throw new RuntimeException("Username, email, or phone number already exists");
-	        }
+		Transaction transaction = null;
+		try (Session session = HibernateCF.getSessionFactory().openSession()) {
+			// Check if the username, email, or phone number already exists
+			if (isUserExists(session, user.getUsername(), user.getEmail(), user.getPhoneNum())) {
+				throw new RuntimeException("Username, email, or phone number already exists");
+			}
 
-	        // Start a transaction
-	        transaction = session.beginTransaction();
-	        // Save the user object
-	        session.save(user);
-	        // Commit transaction
-	        transaction.commit();
-	    } catch (Exception e) {
-	        if (transaction != null) {
-	            transaction.rollback();
-	        }
-	        throw new RuntimeException("Error saving user", e);
-	    }
+			// Start a transaction
+			transaction = session.beginTransaction();
+			// Save the user object
+			session.save(user);
+			// Commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			throw new RuntimeException("Error saving user", e);
+		}
 	}
-
 
 	public boolean validate(String userName, String password) {
 
@@ -69,43 +61,55 @@ public class UserDAO {
 		}
 		return false;
 	}
-	
-	public User getCurrentUser() {
-		int currentUserId = getCurrentUserIdFromSession();
-		
+
+	public User getUserById(int userId) {
 		try (Session session = HibernateCF.getSessionFactory().openSession()) {
-            return session.get(User.class, currentUserId);
-        }
+			return session.get(User.class, userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
-	
-	private int getCurrentUserIdFromSession() {
-		HttpSession session = request.getSession();
-		
-		Object userIdAttribute = session.getAttribute("id");
-		
-        return (int) userIdAttribute;
-        
-    }
+
+	public User getUserByUsername(String username) {
+		try (Session session = HibernateCF.getSessionFactory().openSession()) {
+			return (User) session.createQuery("FROM User U WHERE U.username = :username")
+					.setParameter("username", username).uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public User getCurrentUser(HttpSession session) {
+		int currentUserId = getCurrentUserIdFromSession(session);
+
+		try (Session hibernateSession = HibernateCF.getSessionFactory().openSession()) {
+			return hibernateSession.get(User.class, currentUserId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	private int getCurrentUserIdFromSession(HttpSession session) {
+		Object userIdAttribute = session.getAttribute("userId");
+
+		return (int) userIdAttribute;
+	}
 
 	private boolean isUserExists(Session session, String username, String email, String phoneNum) {
-	    CriteriaBuilder builder = session.getCriteriaBuilder();
-	    CriteriaQuery<Long> criteriaQuery = builder.createQuery(Long.class);
-	    Root<User> root = criteriaQuery.from(User.class);
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+		CriteriaQuery<Long> criteriaQuery = builder.createQuery(Long.class);
+		Root<User> root = criteriaQuery.from(User.class);
 
-	    criteriaQuery.select(builder.count(root));
-	    criteriaQuery.where(
-	        builder.or(
-	            builder.equal(root.get("username"), username),
-	            builder.equal(root.get("email"), email),
-	            builder.equal(root.get("phoneNum"), phoneNum)
-	        )
-	    );
+		criteriaQuery.select(builder.count(root));
+		criteriaQuery.where(builder.or(builder.equal(root.get("username"), username),
+				builder.equal(root.get("email"), email), builder.equal(root.get("phoneNum"), phoneNum)));
 
-	    Long count = session.createQuery(criteriaQuery).uniqueResult();
+		Long count = session.createQuery(criteriaQuery).uniqueResult();
 
-	    return count != null && count > 0;
+		return count != null && count > 0;
 	}
-	
-	
-	
+
 }
