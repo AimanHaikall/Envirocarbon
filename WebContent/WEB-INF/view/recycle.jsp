@@ -127,7 +127,6 @@
                             <tr class="align-middle">
                               
                               <th >ID</th>
-                              <th >DATE</th>
                               <th>TITLE</th>
                               <th >STATUS</th>
                               <th >RESULT</th>
@@ -135,29 +134,16 @@
                             </tr>
                           </thead>
                           <tbody >
-                          
-                            <tr class="align-middle" style="font-weight: bold">
-                              <td>
-                                <div>01</div>
-                              </td>
-                              <td>
-                                <div>7/12/2023</div>
-                               
-                              </td>
-                              <td >
-                                <div>IPRK COMPETITION JANUARI-JULAI</div>
-                              </td>
-                              <td>
-                                <div>SUBMITTED </div>
-                              </td>
-                              <td >
-                                <div>PARTICIPATED</div>
-                              </td>
-                              
-                             
-                            </tr>
-                           
-                            
+                          	<c:if test = "${recycleList != null}">
+                          		<c:forEach var = "recycle" items = "${recycleList}">
+                            		<tr class="align-middle" style="font-weight: bold">
+                                        <th>${recycle.id + 1}</th>
+                                        <th>${recycle.month}</th>
+                                        <th>SUBMITTED</th>
+                                        <th>PARTICIPATED</th>                   
+                            		</tr>
+                           		</c:forEach>
+                            </c:if>
                           </tbody>
                         </table>
                       </div>

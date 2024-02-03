@@ -2,23 +2,17 @@
     pageEncoding="ISO-8859-1"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!DOCTYPE html><!--
-    * CoreUI - Free Bootstrap Admin Template
-    * @version v4.2.2
-    * @link https://coreui.io/product/free-bootstrap-admin-template/
-    * Copyright (c) 2023 creativeLabs Łukasz Holeczek
-    * Licensed under MIT (https://github.com/coreui/coreui-free-bootstrap-admin-template/blob/main/LICENSE)
-    --><!-- Breadcrumb-->
+<!DOCTYPE html>
     <html lang="en">
       <head>
-        <base href="./">
+        <base href="<%= request.getContextPath() %>/">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
         <meta name="author" content="Łukasz Holeczek">
         <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-        <title>CoreUI Free Bootstrap Admin Template</title>
+        <title>Add Recycle </title>
         <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
@@ -61,35 +55,35 @@
             </div>
           </div>
           <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-            <li class="nav-item"><a class="nav-link" href="index.jsp">
+            <li class="nav-item"><a class="nav-link" href="index.html">
                 <svg class="nav-icon">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
                 </svg> Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="editProfile.jsp">
+            <li class="nav-item"><a class="nav-link" href="editProfile.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                   </svg> Account</a></li>
-            <li class="nav-item"><a class="nav-link" href="submission-menu.jsp">
+            <li class="nav-item"><a class="nav-link" href="submission-menu.html">
                 <svg class="nav-icon">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
                 </svg> Submission</a></li>
-            <li class="nav-item"><a class="nav-link" href="leaderboard.jsp">
+            <li class="nav-item"><a class="nav-link" href="leaderboard.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-numbered"></use>
                   </svg> Leaderboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="ebooks.jsp">
+            <li class="nav-item"><a class="nav-link" href="ebooks.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-book"></use>
                   </svg> E-Books</a></li>
-            <li class="nav-item"><a class="nav-link" href="calendar.jsp">
+            <li class="nav-item"><a class="nav-link" href="calendar.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-calendar"></use>
                   </svg> Calendar</a></li>
-            <li class="nav-item"><a class="nav-link" href="settings.jsp">
+            <li class="nav-item"><a class="nav-link" href="settings.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
                   </svg> Settings</a></li>
-            <li class="nav-item"><a class="nav-link" href="logout.jsp">
+            <li class="nav-item"><a class="nav-link" href="logout.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
                   </svg> Log Out</a></li>
@@ -118,177 +112,47 @@
           </header>
           <div class="body flex-grow-1 px-3">
             <div class="container-lg">
-              <form>
-              <div class="body flex-grow-1 px-3">
-                <div class="container-lg">
-                  <div class="row mb-4">
-                    <h1 class="row mb-5">January-February</h1>
-                    <div class="col-sm-6 col-lg-6">
-                      <div>
-                          <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                              <label for="daysInJanuary" class="form-label"><h4>1. Number of Days in January:</h4></label>
-                          </div>
-                          <div class="card-body row text-center">
-                              <div class="col">
-                                  <input type="text" id="daysInJanuary" name="daysInJanuary" class="form-control" required>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-    
-        <!-- Add a submit button -->
-      
-    
-                    <!-- /.col-->
-                    <div class="col-sm-6 col-lg-6">
-                      <div>
-                          <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                              <label for="daysInFebruary" class="form-label"><h4>6. Number of Days in February:</h4></label>
-                          </div>
-                          <div class="card-body row text-center">
-                              <div class="col">
-                                  <input type="text" id="daysInFebruary" name="daysInFebruary" class="form-control" required>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                    <!-- /.col-->
-       
-                    <!-- /.col-->
-                  </div>
-                  <!-- /.row-->
-                  <div class="row mb-4">
-                    <div class="col-sm-6 col-lg-6">
-                      <div>
-                          <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                              <label for="protatedJanuary" class="form-label"><h4>2. Protated factor for January:</h4></label>
-                          </div>
-                          <div class="card-body row text-center">
-                              <div class="col">
-                                  <input type="text" id="protatedJanuary" name="protatedJanuary" class="form-control" required>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                    <!-- /.col-->
-                    <div class="col-sm-6 col-lg-6">
-                      <div>
-                          <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                              <label for="protatedFebruary" class="form-label"><h4 >7. Protated factor for February:</h4></label>
-                          </div>
-                          <div class="card-body row text-center">
-                              <div class="col">
-                                  <input type="text" id="protatedFebruary" name="protatedFebruary" class="form-control" required>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                    <!-- /.col-->
-       
-                    <!-- /.col-->
-                  </div>
-                  <!-- /.card.mb-4-->
-                  <div class="row mb-4">
-                    <div class="col-sm-6 col-lg-6">
-                      <div>
-                          <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                              <label for="electricJanuary" class="form-label"><h4>3. Current electric consumption values (kWh) in January:</h4></label>
-                          </div>
-                          <div class="card-body row text-center">
-                              <div class="col">
-                                  <input type="text" id="electricJanuary" name="electricJanuary" class="form-control" required>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                    <!-- /.col-->
-                    <div class="col-sm-6 col-lg-6">
-                      <div>
-                          <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                              <label for="electricFebruary" class="form-label"><h4>8. Current electric consumption values (kWh) in February:</h4></label>
-                          </div>
-                          <div class="card-body row text-center">
-                              <div class="col">
-                                  <input type="text" id="electricFebruary" name="electricFebruary" class="form-control" required>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                    <!-- /.col-->
-       
-                    <!-- /.col-->
-                  </div>
-                  <!-- /.row-->
-                  <div class="row mb-4">
-                    <div class="col-sm-6 col-lg-6">
-                      <div>
-                          <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                              <label for="electricCJanuary" class="form-label"><h4>4. Current electric consumption values (RM) in January</h4></label>
-                          </div>
-                          <div class="card-body row text-center">
-                              <div class="col">
-                                  <input type="text" id="electricCJanuary" name="electricCJanuary" class="form-control" required>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                    <!-- /.col-->
-                    <div class="col-sm-6 col-lg-6">
-                      <div>
-                          <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                              <label for="electricCFebruary" class="form-label"><h4 >9. Current electric consumption values (RM) in February</h4></label>
-                          </div>
-                          <div class="card-body row text-center">
-                              <div class="col">
-                                  <input type="text" id="electricCFebruary" name="electricCFebruary" class="form-control" required>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                    <!-- /.col-->
-       
-                    <!-- /.col-->
-                  </div>
-    
-                  <div class="row mb-4">
-                    <div class="col-sm-6 col-lg-6">
-                      <div>
-                          <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                              <label for="billUploadJanuary" class="form-label"><h4>5. Upload bill for January:</h4></label>
-                          </div>
-                          <div class="card-body row text-center">
-                              <div class="col">
-                                  <!-- Input field for file upload -->
-                                  <input type="file" id="billUploadJanuary" name="billUploadJanuary" class="form-control" accept=".pdf, .doc, .docx" required>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                    <!-- /.col-->
-                    <div class="col-sm-6 col-lg-6">
-                      <div>
-                          <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                              <label for="billUploadFebruary" class="form-label"><h4>10. Upload bill for February:</h4></label>
-                          </div>
-                          <div class="card-body row text-center">
-                              <div class="col">
-                                  <!-- Input field for file upload -->
-                                  <input type="file" id="billUploadFebruary" name="billUploadFebruary" class="form-control" accept=".pdf, .doc, .docx" required>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="text-end mt-3">
-                    <a href="electric.jsp" class="btn btn-secondary">Back</a>
-                    <a href="electricMarApr.jsp" class="btn btn-primary">Next Page</a>
-                </div>
-                  </div>
-          
-                </div>
+               <form action="${pageContext.request.contextPath}/recycle/save" method="post">
                
-              
-              </div>
-              </form>
+               		<input type="hidden" id="id" name="id" value="${recycle.id}">
+               
+       	 			<div class="row mb-4" style="margin-top: 20px;">
+            			<div>
+                			<label for="month" class="form-label">Month:</label>
+                			<input type="month" id="month" name="month" required>
+            			</div>
+        			</div>
+        			<div class="row mb-4">
+            			<div class="col-sm-6 col-lg-6">
+                			<div>
+                	    		<div class="card-header position-relative d-flex justify-content-center align-items-center">
+                        			<label for="m3" class="form-label"><h4>3. Current recycle weight values (Kg):</h4></label>
+                    			</div>
+                    			<div class="card-body row text-center">
+                        			<div class="col">
+                            			<input type="text" id="weightKg" name="weightKg" class="form-control" required>
+                        			</div>
+                    			</div>
+                			</div>
+            			</div>
+            			<div class="col-sm-6 col-lg-6">
+                			<div>
+                    			<div class="card-header position-relative d-flex justify-content-center align-items-center">
+                        			<label for="rm" class="form-label"><h4>4. Current recycle weight values (RM)</h4></label>
+                    			</div>
+                    			<div class="card-body row text-center">
+                        			<div class="col">
+                            			<input type="text" id="weightRm" name="weightRm" class="form-control" required>
+                        			</div>
+                    			</div>
+               			 	</div>
+            			</div>
+        			</div>
+        			<div class="text-end mt-3">
+            			<a href="<c:url value = '/recycle/home'" class="btn btn-secondary">Cancel</a>
+            			<button type="submit" class="btn btn-primary mt-3">Submit</button>
+        			</div>
+    			</form>
             </div>
           </div>
     
@@ -297,11 +161,15 @@
             <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI UI Components</a></div>
           </footer>
         </div>
-        <!-- CoreUI and necessary plugins-->
+        
+     
         <script src="vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
         <script src="vendors/simplebar/js/simplebar.min.js"></script>
-        <script>
+        <script src="vendors/chart.js/js/chart.min.js"></script>
+	    <script src="vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
+	    <script src="vendors/@coreui/utils/js/coreui-utils.js"></script>
+	    <script src="js/main.js"></script>
         </script>
     
       </body>
-    </html>
+    </html>
