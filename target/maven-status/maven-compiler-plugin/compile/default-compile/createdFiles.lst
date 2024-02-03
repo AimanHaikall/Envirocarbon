@@ -1,3 +1,4 @@
+com\controller\WaterController.class
 com\model\Water.class
 com\controller\LoginController.class
 com\controller\RouterController.class

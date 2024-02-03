@@ -60,35 +60,35 @@
             </div>
           </div>
           <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-            <li class="nav-item"><a class="nav-link" href="index.jsp">
+            <li class="nav-item"><a class="nav-link" href="index.html">
                 <svg class="nav-icon">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
                 </svg> Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="editProfile.jsp">
+            <li class="nav-item"><a class="nav-link" href="editProfile.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                   </svg> Account</a></li>
-            <li class="nav-item"><a class="nav-link" href="submission-menu.jsp">
+            <li class="nav-item"><a class="nav-link" href="submission-menu.html">
                 <svg class="nav-icon">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
                 </svg> Submission</a></li>
-            <li class="nav-item"><a class="nav-link" href="leaderboard.jsp">
+            <li class="nav-item"><a class="nav-link" href="leaderboard.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-numbered"></use>
                   </svg> Leaderboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="ebooks.jsp">
+            <li class="nav-item"><a class="nav-link" href="ebooks.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-book"></use>
                   </svg> E-Books</a></li>
-            <li class="nav-item"><a class="nav-link" href="calendar.jsp">
+            <li class="nav-item"><a class="nav-link" href="calendar.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-calendar"></use>
                   </svg> Calendar</a></li>
-            <li class="nav-item"><a class="nav-link" href="settings.jsp">
+            <li class="nav-item"><a class="nav-link" href="settings.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
                   </svg> Settings</a></li>
-            <li class="nav-item"><a class="nav-link" href="logout.jsp">
+            <li class="nav-item"><a class="nav-link" href="logout.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
                   </svg> Log Out</a></li>
@@ -120,36 +120,43 @@
               <form>
               <div class="body flex-grow-1 px-3">
                 <div class="container-lg">
-                  <div class="row mb-4">
-                    <h1 class="row mb-5">March - April</h1>
+
+                  
+                  
+                  <div class="row mb-4" style="margin-top: 20px;">
+                    <!-- <h1 class="row mb-5">Month</h1> -->
+                    <div>
+                      <label for="month" class="form-label">Month:</label>
+                      <input type="month" id ="month" field="month" required>
+                      </select>
+                    </div>
                     <div class="col-sm-6 col-lg-6">
                       <div>
                           <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                              <label for="daysInMarch" class="form-label"><h4>1. Number of Days in March:</h4></label>
+                              <label for="days" class="form-label"><h4>1. Number of Days:</h4></label>
                           </div>
                           <div class="card-body row text-center">
                               <div class="col">
-                                  <input type="text" id="daysInMarch" name="daysInMarch" class="form-control" required>
+                                  <input type="text" id="days" name="days" class="form-control" required>
                               </div>
                           </div>
                       </div>
                   </div>
     
-        <!-- Add a submit button -->
       
-    
-                    <!-- /.col-->
+
                     <div class="col-sm-6 col-lg-6">
                       <div>
                           <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                              <label for="daysInApril" class="form-label"><h4>6. Number of Days in April:</h4></label>
+                              <label for="prorated" class="form-label"><h4>2. Prorated factor:</h4></label>
                           </div>
                           <div class="card-body row text-center">
                               <div class="col">
-                                  <input type="text" id="daysInApril" name="daysInApril" class="form-control" required>
+                                  <input type="text" id="prorated" name="prorated" class="form-control" required>
                               </div>
                           </div>
                       </div>
+                  </div>
                   </div>
                     <!-- /.col-->
        
@@ -160,11 +167,11 @@
                     <div class="col-sm-6 col-lg-6">
                       <div>
                           <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                              <label for="protatedMarch" class="form-label"><h4>2. Protated factor for March:</h4></label>
+                              <label for="m3" class="form-label"><h4>3. Current Water consumption values (m3):</h4></label>
                           </div>
                           <div class="card-body row text-center">
                               <div class="col">
-                                  <input type="text" id="protatedMarch" name="protatedMarch" class="form-control" required>
+                                  <input type="text" id="m3" name="m3" class="form-control" required>
                               </div>
                           </div>
                       </div>
@@ -173,119 +180,38 @@
                     <div class="col-sm-6 col-lg-6">
                       <div>
                           <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                              <label for="protatedApril" class="form-label"><h4 >7. Protated factor for April:</h4></label>
+                              <label for="rm" class="form-label"><h4>4. Current electric consumption values (RM)</h4></label>
                           </div>
                           <div class="card-body row text-center">
                               <div class="col">
-                                  <input type="text" id="protatedApril" name="protatedApril" class="form-control" required>
+                                  <input type="text" id="rm" name="rm" class="form-control" required>
                               </div>
                           </div>
                       </div>
                   </div>
                     <!-- /.col-->
-       
-                    <!-- /.col-->
-                  </div>
-                  <!-- /.card.mb-4-->
-                  <div class="row mb-4">
-                    <div class="col-sm-6 col-lg-6">
-                      <div>
-                          <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                              <label for="waterMarch" class="form-label"><h4>3. Current water consumption values (m3) in March:</h4></label>
-                          </div>
-                          <div class="card-body row text-center">
-                              <div class="col">
-                                  <input type="text" id="waterMarch" name="waterMarch" class="form-control" required>
-                              </div>
+                    <!--  <div>
+                      <div class="card-header position-relative d-flex justify-content-center align-items-center">
+                          <label for="bill" class="form-label"><h4>5. Upload bill:</h4></label>
+                      </div>
+                      <div class="card-body row text-center">
+                          <div class="col">
+                              >
+                              <input type="file" id="bill" name="bill" class="form-control" accept=".pdf, .doc, .docx" required>
                           </div>
                       </div>
-                  </div>
-                    <!-- /.col-->
-                    <div class="col-sm-6 col-lg-6">
-                      <div>
-                          <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                              <label for="waterApril" class="form-label"><h4>8. Current water consumption values (m3) in April:</h4></label>
-                          </div>
-                          <div class="card-body row text-center">
-                              <div class="col">
-                                  <input type="text" id="waterApril" name="waterApril" class="form-control" required>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                    <!-- /.col-->
-       
+                  </div>-->
                     <!-- /.col-->
                   </div>
-                  <!-- /.row-->
-                  <div class="row mb-4">
-                    <div class="col-sm-6 col-lg-6">
-                      <div>
-                          <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                              <label for="waterCMarch" class="form-label"><h4>4. Current water consumption values (RM) in March</h4></label>
-                          </div>
-                          <div class="card-body row text-center">
-                              <div class="col">
-                                  <input type="text" id="waterCMarch" name="waterCMarch" class="form-control" required>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                    <!-- /.col-->
-                    <div class="col-sm-6 col-lg-6">
-                      <div>
-                          <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                              <label for="waterCApril" class="form-label"><h4 >9. Current water consumption values (RM) in April</h4></label>
-                          </div>
-                          <div class="card-body row text-center">
-                              <div class="col">
-                                  <input type="text" id="waterCApril" name="waterCApril" class="form-control" required>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                    <!-- /.col-->
-       
-                    <!-- /.col-->
-                  </div>
-    
-                  <div class="row mb-4">
-                    <div class="col-sm-6 col-lg-6">
-                      <div>
-                          <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                              <label for="billUploadMarch" class="form-label"><h4>5. Upload bill for March:</h4></label>
-                          </div>
-                          <div class="card-body row text-center">
-                              <div class="col">
-                                  <!-- Input field for file upload -->
-                                  <input type="file" id="billUploadMarch" name="billUploadMarch" class="form-control" accept=".pdf, .doc, .docx" required>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                    <!-- /.col-->
-                    <div class="col-sm-6 col-lg-6">
-                      <div>
-                          <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                              <label for="billUploadApril" class="form-label"><h4>10. Upload bill for April:</h4></label>
-                          </div>
-                          <div class="card-body row text-center">
-                              <div class="col">
-                                  <!-- Input field for file upload -->
-                                  <input type="file" id="billUploadApril" name="billUploadApril" class="form-control" accept=".pdf, .doc, .docx" required>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
+                 
                   <div class="text-end mt-3">
-                    <a href="waterJanFeb.jsp" class="btn btn-secondary">Back</a>
-                    <a href="waterMayJune.jsp" class="btn btn-primary">Next Page</a>
+                    <a href="water.html" class="btn btn-secondary">Cancel</a>
+                    <a href="water.jsp" class="btn btn-primary">Submit</a>
                 </div>
                   </div>
           
                 </div>
-               
-              
+
               </div>
               </form>
             </div>
@@ -299,8 +225,11 @@
         <!-- CoreUI and necessary plugins-->
         <script src="vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
         <script src="vendors/simplebar/js/simplebar.min.js"></script>
-        <script>
+        <script src="vendors/chart.js/js/chart.min.js"></script>
+	    <script src="vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
+	    <script src="vendors/@coreui/utils/js/coreui-utils.js"></script>
+	    <script src="js/main.js"></script>
         </script>
     
       </body>
-    </html>
+    </html>

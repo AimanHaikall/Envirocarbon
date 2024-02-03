@@ -1,7 +1,5 @@
 package com.model;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -30,7 +28,7 @@ public class Water {
 	private double consumptionRM;
 	
 	@Column(name="month")
-	private Date month;
+	private String month;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -76,11 +74,11 @@ public class Water {
 		this.consumptionRM = consumptionRM;
 	}
 	
-	public Date getMonth() {
+	public String getMonth() {
 		return month;
 	}
 
-	public void setMonth(Date month) {
+	public void setMonth(String month) {
 		this.month = month;
 	}
 	

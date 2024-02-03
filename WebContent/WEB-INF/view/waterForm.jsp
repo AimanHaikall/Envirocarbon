@@ -11,7 +11,7 @@
         <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
         <meta name="author" content="Łukasz Holeczek">
         <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-        <title>CoreUI Free Bootstrap Admin Template</title>
+        <title>Add Water </title>
         <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
@@ -54,35 +54,35 @@
             </div>
           </div>
           <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-            <li class="nav-item"><a class="nav-link" href="index.jsp">
+            <li class="nav-item"><a class="nav-link" href="index.html">
                 <svg class="nav-icon">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
                 </svg> Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="editProfile.jsp">
+            <li class="nav-item"><a class="nav-link" href="editProfile.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                   </svg> Account</a></li>
-            <li class="nav-item"><a class="nav-link" href="submission-menu.jsp">
+            <li class="nav-item"><a class="nav-link" href="submission-menu.html">
                 <svg class="nav-icon">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
                 </svg> Submission</a></li>
-            <li class="nav-item"><a class="nav-link" href="leaderboard.jsp">
+            <li class="nav-item"><a class="nav-link" href="leaderboard.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-numbered"></use>
                   </svg> Leaderboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="ebooks.jsp">
+            <li class="nav-item"><a class="nav-link" href="ebooks.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-book"></use>
                   </svg> E-Books</a></li>
-            <li class="nav-item"><a class="nav-link" href="calendar.jsp">
+            <li class="nav-item"><a class="nav-link" href="calendar.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-calendar"></use>
                   </svg> Calendar</a></li>
-            <li class="nav-item"><a class="nav-link" href="settings.jsp">
+            <li class="nav-item"><a class="nav-link" href="settings.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
                   </svg> Settings</a></li>
-            <li class="nav-item"><a class="nav-link" href="logout.jsp">
+            <li class="nav-item"><a class="nav-link" href="logout.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
                   </svg> Log Out</a></li>
@@ -109,73 +109,89 @@
               </nav>
             </div>
           </header>
-          <div class="body flex-grow-1 px-3 ">
-            <div class="container-lg ">
-              <form>
-              <div class="body flex-grow-1 px-3" style="margin-top: 40px">
-                <div class="container-lg " >
-                    <div class="table-responsive " style="background-color: white;">
-                        <table class="table border mb-0">
-                          <thead class="table-light fw-semibold">
-                            <tr class="align-middle">
-                              
-                              <th >ID</th>
-                              <th >DATE</th>
-                              <th>TITLE</th>
-                              <th >STATUS</th>
-                              <th >RESULT</th>
-                         
-                            </tr>
-                          </thead>
-                          <tbody >
-                            <tr class="align-middle" style="font-weight: bold">
-                              <td>
-                                <div>01</div>
-                              </td>
-                              <td>
-                                <div>7/12/2023</div>
-                               
-                              </td>
-                              <td >
-                                <div>IPRK COMPETITION JANUARI-JULAI</div>
-                              </td>
-                              <td>
-                                <div>SUBMITTED </div>
-                              </td>
-                              <td >
-                                <div>PARTICIPATED</div>
-                              </td>
-                              
-                             
-                            </tr>
-                           
-                            
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="text-end mt-3">
-                        <a href="/EnviroCarbon/water/add" class="btn btn-primary">Next Page</a>
+          <div class="body flex-grow-1 px-3">
+            <div class="container-lg">
+               <form action="${pageContext.request.contextPath}/water/add" method="post">
+               
+               <input type="hidden" id="id" name="id" value="${water.id}">
+               
+        <div class="row mb-4" style="margin-top: 20px;">
+            <div>
+                <label for="month" class="form-label">Month:</label>
+                <input type="month" id="month" name="month" required>
+            </div>
+            <div class="col-sm-6 col-lg-6">
+                <div>
+                    <div class="card-header position-relative d-flex justify-content-center align-items-center">
+                        <label for="days" class="form-label"><h4>1. Number of Days:</h4></label>
+                    </div>
+                    <div class="card-body row text-center">
+                        <div class="col">
+                            <input type="text" id="days" name="days" class="form-control" required>
+                        </div>
                     </div>
                 </div>
-               
-              
-              </div>
-              
-              </form>
-              
+            </div>
+            <div class="col-sm-6 col-lg-6">
+                <div>
+                    <div class="card-header position-relative d-flex justify-content-center align-items-center">
+                        <label for="prorated" class="form-label"><h4>2. Prorated factor:</h4></label>
+                    </div>
+                    <div class="card-body row text-center">
+                        <div class="col">
+                            <input type="text" id="prorated" name="prorated" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-sm-6 col-lg-6">
+                <div>
+                    <div class="card-header position-relative d-flex justify-content-center align-items-center">
+                        <label for="m3" class="form-label"><h4>3. Current Water consumption values (m3):</h4></label>
+                    </div>
+                    <div class="card-body row text-center">
+                        <div class="col">
+                            <input type="text" id="m3" name="m3" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-6">
+                <div>
+                    <div class="card-header position-relative d-flex justify-content-center align-items-center">
+                        <label for="rm" class="form-label"><h4>4. Current electric consumption values (RM)</h4></label>
+                    </div>
+                    <div class="card-body row text-center">
+                        <div class="col">
+                            <input type="text" id="rm" name="rm" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-end mt-3">
+            <a href="water.html" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </div>
+    </form>
             </div>
           </div>
-    
     
           <footer class="footer">
             <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io">Bootstrap Admin Template</a> © 2023 creativeLabs.</div>
             <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI UI Components</a></div>
           </footer>
         </div>
-        <!-- CoreUI and necessary plugins-->
+        
+     
         <script src="vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
         <script src="vendors/simplebar/js/simplebar.min.js"></script>
-        <script>
+        <script src="vendors/chart.js/js/chart.min.js"></script>
+	    <script src="vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
+	    <script src="vendors/@coreui/utils/js/coreui-utils.js"></script>
+	    <script src="js/main.js"></script>
         </script>
     
       </body>
