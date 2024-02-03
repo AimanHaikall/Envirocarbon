@@ -15,7 +15,7 @@ public class LoginController {
 
     private final UserDAO loginDao;
 
-    public LoginController() {
+    public LoginController(UserDAO loginDao) {
         this.loginDao = new UserDAO();
     }
 

@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -16,6 +18,7 @@ public class User {
 	
 	@Id
 	@Column(name="id")
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name="name")
@@ -37,6 +40,9 @@ public class User {
 	
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Electric> electricList = new ArrayList<>();
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Recycle> recycleList = new ArrayList<>();
 
 	public int getId() {
 		return id;
@@ -99,5 +105,13 @@ public class User {
         electric.setUser(this);
         this.electricList.add(electric);
     }
+    
+    public List<Recycle> getRecycleList() {
+		return recycleList;
+	}
+
+	public void setRecycleList(List<Recycle> recycleList) {
+		this.recycleList = recycleList;
+	}
 	
 }

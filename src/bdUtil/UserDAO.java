@@ -1,11 +1,21 @@
 package bdUtil;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.model.User;
 
 public class UserDAO {
+
+	private final HttpServletRequest request;
+	
+	public UserDAO(HttpServletRequest request) {
+		super();
+		this.request = request;
+	}
 
 	public void saveUser(User user) {
 		Transaction transaction = null;
@@ -48,5 +58,22 @@ public class UserDAO {
 		}
 		return false;
 	}
+	
+	public User getCurrentUser() {
+		int currentUserId = getCurrentUserIdFromSession();
+		
+		try (Session session = HibernateCF.getSessionFactory().openSession()) {
+            return session.get(User.class, currentUserId);
+        }
+	}
+	
+	private int getCurrentUserIdFromSession() {
+		HttpSession session = request.getSession();
+		
+		Object userIdAttribute = session.getAttribute("id");
+		
+        return (int) userIdAttribute;
+        
+    }
 
 }

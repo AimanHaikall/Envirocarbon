@@ -42,16 +42,16 @@ public class Recycle {
 		return weightKg;
 	}
 
-	public void setWeightKg(int weightKg) {
-		this.weightKg = weightKg;
+	public void setWeightKg(double weightKg2) {
+		this.weightKg = weightKg2;
 	}
 
 	public double getWeightRm() {
 		return weightRm;
 	}
 
-	public void setWeightRm(int weightRm) {
-		this.weightRm = weightRm;
+	public void setWeightRm(double weightRm2) {
+		this.weightRm = weightRm2;
 	}
 	
 	public Date getMonth() {
