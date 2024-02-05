@@ -155,7 +155,7 @@
 		</header>
 		<div class="container">
 			<div class="logo">
-				<img src="assets/img/envirocarbon-logo.png" alt="Logo">
+				<img src="assets/logo/envirocarbon_logo.png" alt="Logo">
 			</div>
 			<div class="editprofile-title">Edit Profile</div>
 

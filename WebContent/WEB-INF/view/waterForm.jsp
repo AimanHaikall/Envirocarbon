@@ -108,7 +108,7 @@
         <div class="wrapper d-flex flex-column min-vh-100 bg-light">
           <header class="header header-sticky mb-1">
             <div class="logo">
-              <img src="assets/img/envirocarbon-logo.png" alt="Logo">
+              <img src="assets/logo/envirocarbon_logo.png" alt="Logo">
             </div>
             <div class="title " >
               <h1 style="max-width: 80%;">Pertandingan Kalendar Masyarakat Rendah Karbon Iskandar Puteri 2022</h1>
