@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.model.Electric;
+import com.model.Recycle;
 import com.model.Submission;
 import com.model.User;
 import com.model.Water;
@@ -127,6 +128,41 @@ public class SubmissionController {
 
 		return mav;
 	}
+	
+	@RequestMapping("/calculateRecycle")
+	public ModelAndView calculateAndFindAverageRecycle(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("submission");
+		RecycleDAO recycleDao = new RecycleDAO();
+		try {
+			HttpSession sessionUser = request.getSession();
+			User user = (User) sessionUser.getAttribute("user");
+			List<Recycle> allRecycleSubmissions = recycleDao.getRecycleByUser(user); // Assuming you have a method
+																							// to fetch all submissions
+
+			if (allRecycleSubmissions.isEmpty()) {
+				mav.addObject("error", "No Recycle submissions found");
+				return mav;
+			}
+
+			double totalCalculatedValue = 0.0;
+
+			for (Recycle recycle : allRecycleSubmissions) {
+				double calculatedValue = calculateValueRecycling(recycle.getWeightKg());
+
+				totalCalculatedValue += calculatedValue;
+			}
+
+			double averageValue = totalCalculatedValue / allRecycleSubmissions.size();
+			submissionDao.updateResult(3, averageValue, user);
+			mav.addObject("averageValue", averageValue);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			mav.addObject("error", "An unexpected error occurred");
+		}
+
+		return mav;
+	}
 
 	private double calculateValueWater(double consumptionM3) {
 
@@ -138,9 +174,9 @@ public class SubmissionController {
 		return consumptionKWH * 0.584;
 	}
 	
-	private double calculateValueRecycling(double kiraRecycle) {
+	private double calculateValueRecycling(double weightKg) {
 
-		return kiraRecycle * 0.584;
+		return weightKg * 2.860;
 	}
 
 }
