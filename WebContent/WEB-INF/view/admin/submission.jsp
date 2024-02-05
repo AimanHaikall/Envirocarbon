@@ -3,8 +3,8 @@
 <%@ page import="javax.servlet.http.HttpSession"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="username" value="${sessionScope.username}" />
-<c:set var="user" value="${sessionScope.user}" />
+<c:set var="username" value="${sessionScope.adminUsername}" />
+<c:set var="user" value="${sessionScope.admin}" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,37 +53,29 @@
 
 		</div>
 		<ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-			<li class="nav-item"><a class="nav-link"
-				href="<c:url value = "/home"/>"> <svg class="nav-icon">
+			<li class="nav-item"><a class="nav-link" href="<c:url value='admin/home' />"> <svg
+						class="nav-icon">
               <use
 							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
             </svg> Dashboard
 			</a></li>
 			<li class="nav-item"><a class="nav-link"
-				href="<c:url value='/user' />"> <svg class="nav-icon">
+				href="<c:url value='admin/user' />"> <svg class="nav-icon">
                 <use
 							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
               </svg> Account
 			</a></li>
 			<li class="nav-item"><a class="nav-link"
-				href="/EnviroCarbon/submission"> <svg class="nav-icon">
+				href="<c:url value='admin/submission' />"> <svg class="nav-icon">
               <use
 							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
             </svg> Submission
 			</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="<c:url value = "/submission/leaderboard"/>"> <svg
-						class="nav-icon">
+			<li class="nav-item"><a class="nav-link" href="<c:url value='admin/leaderboard' />">
+					<svg class="nav-icon">
                 <use
 							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-numbered"></use>
               </svg> Leaderboard
-			</a></li>
-
-			<li class="nav-item"><a class="nav-link" href="#"> <svg
-						class="nav-icon">
-                <use
-							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
-              </svg> Settings
 			</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="<c:url value='/logout' />"> <svg class="nav-icon">
@@ -138,7 +130,7 @@
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb my-0 ms-2">
 						<li class="breadcrumb-item">
-							<!-- if breadcrumb is single--> <span>Home</span>
+							<!-- if breadcrumb is single--> <span>Admin</span>
 						</li>
 						<li class="breadcrumb-item active"><span>Dashboard</span></li>
 					</ol>
@@ -146,58 +138,114 @@
 			</div>
 		</header>
 
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8">
-					<div>
-						<iframe
-							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10218.723941948408!2d103.6410695922391!3d1.503180835979977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da9f7069682557%3A0x65f562b4eb663916!2sIskandar+Puteri%2C+Johor!5e0!3m2!1sen!2smy!4v1670349666770!5m2!1sen!2smy"
-							width="600" height="450" style="border: 0;" allowfullscreen=""
-							loading="lazy"></iframe>
-					</div>
-					<div class="mb-4">
-						<h2>News</h2>
-						<p>
-							<b>BENGKEL PENILAIAN GERAN KOMUNITI ISKANDAR PUTERI RENDAH
-								KARBON 3.0<br>23-24 Mei 2023 | Selasa - Rabu
-							</b><br>
-						</p>
-						<p>
-							Majlis Bandaraya Iskandar Puteri (MBIP) bersama-sama rakan
-							strategik daripada Universiti Teknologi Malaysia (UTM), Jabatan
-							Pendidikan Negeri Johor (JPNJ), Pihak Berkuasa Wilayah
-							Pembangunan Iskandar (IRDA), dan SWM Environment Sdn Bhd telah
-							menganjurkan Bengkel Penilaian Geran Komuniti Iskandar Puteri
-							Rendah Karbon 3.0 bersama .. <a href="home.jsp">READ MORE</a>
-						</p>
-						<p>
-							<b>BENGKEL PENILAIAN GERAN KOMUNITI ISKANDAR PUTERI RENDAH
-								KARBON 3.0<br>23-24 Mei 2023 | Selasa - Rabu
-							</b><br>
-						</p>
-						<p>
-							Majlis Bandaraya Iskandar Puteri (MBIP) bersama-sama rakan
-							strategik daripada Universiti Teknologi Malaysia (UTM), Jabatan
-							Pendidikan Negeri Johor (JPNJ), Pihak Berkuasa Wilayah
-							Pembangunan Iskandar (IRDA), dan SWM Environment Sdn Bhd telah
-							menganjurkan Bengkel Penilaian Geran Komuniti Iskandar Puteri
-							Rendah Karbon 3.0 bersama .. <a href="home.jsp">READ MORE</a>
-						</p>
-					</div>
+
+<div class="container">
+			<form action="<c:url value='/admin/user/getById'/>" method="get"
+				class="d-flex align-items-center">
+				<div>
+					<label for="id" class="form-label me-2">Search ID:</label>
 				</div>
-				<div class="col-md-4">
-					<div class="statistics-container">
-						<h2>GHG Emissions</h2>
-						<p>Stationary Energy: xx</p>
-						<p>Transportation: xx</p>
-						<p>Waste: xx</p>
-						<h2>Carbon Emission Status</h2>
-						<p>2019 : xx</p>
-						<p>2020 : xx</p>
+				<div>
+					<div class="row">
+						<div class="col-md-6">
+							<input type="text" name="id" class="form-control">
+						</div>
+						<div class="col-md-6">
+							<button class="btn btn-primary ms-1" type="submit">Search</button>
+						</div>
 					</div>
+
 				</div>
-			</div>
+
+			</form>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Phone Number</th>
+						<th>Username</th>
+						<th>Email</th>
+						<th>Password</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="user" items="${users}">
+						<tr>
+							<td>${user.id}</td>
+							<td>${user.name}</td>
+							<td>${user.phoneNum}</td>
+							<td>${user.username}</td>
+							<td>${user.email}</td>
+							<td>${user.password}</td>
+							<td><a class="btn btn-primary"
+								href="<c:url value='/admin/user/update?id=${user.id}'/>">Update</a>
+								<a class="btn btn-danger"
+								href="<c:url value='/admin/user/delete?id=${user.id}'/>">Delete</a>
+							</td>
+						</tr>
+					</c:forEach>
+
+					<c:if
+						test="${currentView ne 'update' and currentView ne 'getById'}">
+						<tr>
+							<td colspan="1"></td>
+							<td>
+								<form action="<c:url value='/admin/user/add'/>" method="post"
+									class="d-flex">
+									<label for="name" class="form-label me-2">Name:</label> <input
+										type="text" name="name" class="form-control" required>
+							</td>
+							<td><label for="phoneNum" class="form-label mx-2">Phone
+									Num:</label> <input type="text" name="phoneNum" class="form-control"
+								required></td>
+							<td><label for="username" class="form-label mx-2">Username:</label>
+								<input type="text" name="username" class="form-control" required></td>
+							<td><label for="email" class="form-label mx-2">Email:</label>
+								<input type="email" name="email" class="form-control" required></td>
+							<td><label for="password" class="form-label mx-2">Password:</label>
+								<input type="text" name="password" class="form-control" required></td>
+							<td>
+								<button class="btn btn-outline-primary" style="height: 70px;"
+									type="submit">Add User</button>
+
+							</td>
+							</form>
+
+						</tr>
+					</c:if>
+
+					<c:if test="${currentView eq 'update'}">
+						<tr>
+							<form action="<c:url value='/admin/user/update'/>" method="post">
+								<input type="hidden" name="id" value="${idParam}">
+								<td></td>
+								<td><label for="newName" class="form-label">New
+										Name:</label><input type="text" name="newName" class="form-control"></td>
+								<td><label for="newPhoneNum" class="form-label mx-2">New
+										Phone Num:</label> <input type="text" name="newPhoneNum"
+									class="form-control"></td>
+								<td><label for="newUsername" class="form-label mx-2">New
+										Username:</label> <input type="text" name="newUsername"
+									class="form-control"></td>
+								<td><label for="newEmail" class="form-label">New
+										Email:</label><input type="text" name="newEmail" class="form-control"></td>
+
+								<td><label for="newPassword" class="form-label">New
+										Password:</label><input type="text" name="newPassword"
+									class="form-control"></td>
+								<td>
+									<button class="btn btn-success" type="submit">Update
+										Program</button>
+								</td>
+							</form>
+						</tr>
+					</c:if>
+				</tbody>
+			</table>
 		</div>
+
 
 		<footer class="footer">
 			<div>
@@ -210,17 +258,5 @@
 			</div>
 		</footer>
 	</div>
-	<!-- CoreUI and necessary plugins-->
-	<script src="vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
-	<script src="vendors/simplebar/js/simplebar.min.js"></script>
-	<!-- Plugins and scripts required by this view-->
-	<script src="vendors/chart.js/js/chart.min.js"></script>
-	<script src="vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
-	<script src="vendors/@coreui/utils/js/coreui-utils.js"></script>
-	<script src="js/main.js"></script>
-	<script>
-		
-	</script>
-
 </body>
 </html>

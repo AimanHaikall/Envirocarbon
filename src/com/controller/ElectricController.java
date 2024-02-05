@@ -24,7 +24,7 @@ import bdUtil.WaterDAO;
 @Controller
 @RequestMapping("/electric")
 public class ElectricController {
-
+	
 	@GetMapping("/list")
     public ModelAndView getAll(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView("electric");

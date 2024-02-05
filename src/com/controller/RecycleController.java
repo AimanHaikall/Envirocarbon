@@ -27,12 +27,6 @@ import bdUtil.RecycleDAO;
 @RequestMapping("/recycle")
 public class RecycleController {
 	
-	
-
-//	@GetMapping("/list")
-//	public String addWater() {
-//	    return "water";
-//	}
 	@Transactional
 	@GetMapping("/list")
     public ModelAndView getAll(HttpServletRequest request) {

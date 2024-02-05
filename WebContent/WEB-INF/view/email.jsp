@@ -1,68 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import="javax.servlet.http.HttpSession"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<c:set var="username" value="${sessionScope.username}" />
+<c:set var="user" value="${sessionScope.user}" />
 
 <!DOCTYPE html>
-<!--
-* CoreUI - Free Bootstrap Admin Template
-* @version v4.2.2
-* @link https://coreui.io/product/free-bootstrap-admin-template/
-* Copyright (c) 2023 creativeLabs Łukasz Holeczek
-* Licensed under MIT (https://github.com/coreui/coreui-free-bootstrap-admin-template/blob/main/LICENSE)
--->
-<!-- Breadcrumb-->
 <html lang="en">
 <head>
-<base href="./">
+<base href="<%=request.getContextPath()%>/">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<meta name="description"
-	content="CoreUI - Open Source Bootstrap Admin Template">
-<meta name="author" content="Łukasz Holeczek">
-<meta name="keyword"
-	content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-<title>CoreUI Free Bootstrap Admin Template</title>
-<link rel="apple-touch-icon" sizes="57x57"
-	href="assets/favicon/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60"
-	href="assets/favicon/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72"
-	href="assets/favicon/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76"
-	href="assets/favicon/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114"
-	href="assets/favicon/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120"
-	href="assets/favicon/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144"
-	href="assets/favicon/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152"
-	href="assets/favicon/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180"
-	href="assets/favicon/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192"
-	href="assets/favicon/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32"
-	href="assets/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96"
-	href="assets/favicon/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16"
-	href="assets/favicon/favicon-16x16.png">
-<link rel="manifest" href="assets/favicon/manifest.json">
+
+<title>Envirocarbon</title>
+
+<link rel="icon" type="image/png"
+	href="assets/logo/envirocarbon_logo.png">
+
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-TileImage"
 	content="assets/favicon/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
-<!-- Vendors styles-->
+
 <link rel="stylesheet" href="vendors/simplebar/css/simplebar.css">
 <link rel="stylesheet" href="css/vendors/simplebar.css">
-<!-- Main styles for this application-->
+
 <link href="css/style.css" rel="stylesheet">
-<!-- We use those styles to show code examples, you should remove them in your application.-->
-<link href="css/examples.css" rel="stylesheet">
+
+<link href="vendors/@coreui/chartjs/css/coreui-chartjs.css"
+	rel="stylesheet">
 </head>
 <body>
 	<div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
@@ -141,6 +110,28 @@
 						height="46" alt="CoreUI Logo">
               <use xlink:href="assets/brand/coreui.svg#full"></use>
             </svg></a>
+				<ul class="header-nav d-none d-md-flex">
+					<li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Users</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
+				</ul>
+				<ul class="header-nav ms-auto">
+					<li class="nav-item"><a class="nav-link" href="#"> <svg
+								class="icon icon-lg">
+                  <use
+									xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
+                </svg></a></li>
+					<li class="nav-item"><a class="nav-link" href="#"> <svg
+								class="icon icon-lg">
+                  <use
+									xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
+                </svg></a></li>
+					<li class="nav-item"><a class="nav-link" href="#"> <svg
+								class="icon icon-lg">
+                  <use
+									xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
+                </svg></a></li>
+				</ul>
 			</div>
 			<div class="header-divider"></div>
 			<div class="container-fluid">
@@ -149,80 +140,27 @@
 						<li class="breadcrumb-item">
 							<!-- if breadcrumb is single--> <span>Account</span>
 						</li>
+						<li class="breadcrumb-item active"><span>Email</span></li>
 					</ol>
 				</nav>
 			</div>
 		</header>
 		<div class="container">
-			<div class="logo">
-				<img src="assets/img/envirocarbon-logo.png" alt="Logo">
-			</div>
-			<div class="editprofile-title">Edit Profile</div>
-
-			<form method="post">
+			<form action="<c:url value='/user/email' />" method="post">
 				<div class="form-group">
-					<label for="profilepicture">Profile Picture:</label> <input
-						type="file" id="profilepicture" name="profilepicture">
-				</div>
-
-				<div class="form-group">
-					<label for="name">Name:</label> <input type="text" id="name"
-						name="name" placeholder="Enter your name" required
-						value="<c:out value='${user.name}'/>">
+					<label for="email">Email:</label> <input type="email" id="email"
+						name="email" placeholder="${user.email}" required>
 				</div>
 				<div class="form-group">
-					<label for="username">Username:</label> <input type="text"
-						id="username" name="username" placeholder="Enter your username"
-						required value="<c:out value='${user.username}'/>">
-				</div>
-				<div class="form-group">
-					<label for="phoneNum">Phone Number:</label> <input type="text"
-						id="phonenumber" name="phoneNum"
-						placeholder="Enter your phone number" required
-						value="<c:out value='${user.phoneNum}'/>">
-				</div>
-				<div class="form-group">
-					<label for="addressline1">Address:</label>
-					<div class="address-group">
-						<input type="text" id="addressline1" name="addressline1"
-							placeholder="Line 1"> <input type="text"
-							id="addressline2" name="addressline2" placeholder="Line 2">
-						<input type="text" id="addressline3" name="addressline3"
-							placeholder="Line 3">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="email">Email:</label>
-					<div class="input-group">
-						<div class="col-md-4">
-							<c:out value="${user.email}" />
-						</div>
-						<a type="button" class="btn btn-primary"
-							href=<c:url value="/user/email"/>>Update</a>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="password">Password:</label>
-					<div class="input-group">
-						<div class="col-md-4">************</div>
-						<a type="button" class="btn btn-primary"
-							href=<c:url value="/user/password"/>>Update</a>
-					</div>
+					<label for="confirmEmail">Confirm Email:</label> <input
+						type="email" id="confirmEmail" name="confirmEmail" required>
 				</div>
 				<div class="button-container">
-					<button type="button" class="btn btn-secondary">
-						<span class="cil-contrast"></span> Cancel
-					</button>
 					<button type="submit" class="btn btn-success">
 						<span class="cil-contrast"></span> Save
 					</button>
 				</div>
 			</form>
-
-		</div>
-		<div class="body flex-grow-1 px-3">
-			<div class="container-lg"></div>
 		</div>
 		<footer class="footer">
 			<div>
@@ -238,6 +176,11 @@
 	<!-- CoreUI and necessary plugins-->
 	<script src="vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
 	<script src="vendors/simplebar/js/simplebar.min.js"></script>
+	<!-- Plugins and scripts required by this view-->
+	<script src="vendors/chart.js/js/chart.min.js"></script>
+	<script src="vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
+	<script src="vendors/@coreui/utils/js/coreui-utils.js"></script>
+	<script src="js/main.js"></script>
 	<script>
 		
 	</script>

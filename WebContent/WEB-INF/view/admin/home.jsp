@@ -3,8 +3,8 @@
 <%@ page import="javax.servlet.http.HttpSession"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="username" value="${sessionScope.username}" />
-<c:set var="user" value="${sessionScope.user}" />
+<c:set var="username" value="${sessionScope.adminUsername}" />
+<c:set var="user" value="${sessionScope.admin}" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,37 +53,29 @@
 
 		</div>
 		<ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-			<li class="nav-item"><a class="nav-link"
-				href="<c:url value = "/home"/>"> <svg class="nav-icon">
+			<li class="nav-item"><a class="nav-link" href="<c:url value='admin/home' />"> <svg
+						class="nav-icon">
               <use
 							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
             </svg> Dashboard
 			</a></li>
 			<li class="nav-item"><a class="nav-link"
-				href="<c:url value='/user' />"> <svg class="nav-icon">
+				href="<c:url value='admin/user' />"> <svg class="nav-icon">
                 <use
 							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
               </svg> Account
 			</a></li>
 			<li class="nav-item"><a class="nav-link"
-				href="/EnviroCarbon/submission"> <svg class="nav-icon">
+				href="<c:url value='admin/submission' />"> <svg class="nav-icon">
               <use
 							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
             </svg> Submission
 			</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="<c:url value = "/submission/leaderboard"/>"> <svg
-						class="nav-icon">
+			<li class="nav-item"><a class="nav-link" href="<c:url value='admin/leaderboard' />">
+					<svg class="nav-icon">
                 <use
 							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-numbered"></use>
               </svg> Leaderboard
-			</a></li>
-
-			<li class="nav-item"><a class="nav-link" href="#"> <svg
-						class="nav-icon">
-                <use
-							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
-              </svg> Settings
 			</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="<c:url value='/logout' />"> <svg class="nav-icon">
@@ -138,7 +130,7 @@
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb my-0 ms-2">
 						<li class="breadcrumb-item">
-							<!-- if breadcrumb is single--> <span>Home</span>
+							<!-- if breadcrumb is single--> <span>Admin</span>
 						</li>
 						<li class="breadcrumb-item active"><span>Dashboard</span></li>
 					</ol>
@@ -146,58 +138,6 @@
 			</div>
 		</header>
 
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8">
-					<div>
-						<iframe
-							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10218.723941948408!2d103.6410695922391!3d1.503180835979977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da9f7069682557%3A0x65f562b4eb663916!2sIskandar+Puteri%2C+Johor!5e0!3m2!1sen!2smy!4v1670349666770!5m2!1sen!2smy"
-							width="600" height="450" style="border: 0;" allowfullscreen=""
-							loading="lazy"></iframe>
-					</div>
-					<div class="mb-4">
-						<h2>News</h2>
-						<p>
-							<b>BENGKEL PENILAIAN GERAN KOMUNITI ISKANDAR PUTERI RENDAH
-								KARBON 3.0<br>23-24 Mei 2023 | Selasa - Rabu
-							</b><br>
-						</p>
-						<p>
-							Majlis Bandaraya Iskandar Puteri (MBIP) bersama-sama rakan
-							strategik daripada Universiti Teknologi Malaysia (UTM), Jabatan
-							Pendidikan Negeri Johor (JPNJ), Pihak Berkuasa Wilayah
-							Pembangunan Iskandar (IRDA), dan SWM Environment Sdn Bhd telah
-							menganjurkan Bengkel Penilaian Geran Komuniti Iskandar Puteri
-							Rendah Karbon 3.0 bersama .. <a href="home.jsp">READ MORE</a>
-						</p>
-						<p>
-							<b>BENGKEL PENILAIAN GERAN KOMUNITI ISKANDAR PUTERI RENDAH
-								KARBON 3.0<br>23-24 Mei 2023 | Selasa - Rabu
-							</b><br>
-						</p>
-						<p>
-							Majlis Bandaraya Iskandar Puteri (MBIP) bersama-sama rakan
-							strategik daripada Universiti Teknologi Malaysia (UTM), Jabatan
-							Pendidikan Negeri Johor (JPNJ), Pihak Berkuasa Wilayah
-							Pembangunan Iskandar (IRDA), dan SWM Environment Sdn Bhd telah
-							menganjurkan Bengkel Penilaian Geran Komuniti Iskandar Puteri
-							Rendah Karbon 3.0 bersama .. <a href="home.jsp">READ MORE</a>
-						</p>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="statistics-container">
-						<h2>GHG Emissions</h2>
-						<p>Stationary Energy: xx</p>
-						<p>Transportation: xx</p>
-						<p>Waste: xx</p>
-						<h2>Carbon Emission Status</h2>
-						<p>2019 : xx</p>
-						<p>2020 : xx</p>
-					</div>
-				</div>
-			</div>
-		</div>
 
 		<footer class="footer">
 			<div>
@@ -210,17 +150,5 @@
 			</div>
 		</footer>
 	</div>
-	<!-- CoreUI and necessary plugins-->
-	<script src="vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
-	<script src="vendors/simplebar/js/simplebar.min.js"></script>
-	<!-- Plugins and scripts required by this view-->
-	<script src="vendors/chart.js/js/chart.min.js"></script>
-	<script src="vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
-	<script src="vendors/@coreui/utils/js/coreui-utils.js"></script>
-	<script src="js/main.js"></script>
-	<script>
-		
-	</script>
-
 </body>
 </html>

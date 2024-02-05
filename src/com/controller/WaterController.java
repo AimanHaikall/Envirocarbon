@@ -129,9 +129,6 @@ public class WaterController {
 	    return modelAndView;
 	}
 
-
-
-
 	
 	@RequestMapping("/update/{id}")
 	public ModelAndView updatePost(@PathVariable int id, HttpServletRequest request) {

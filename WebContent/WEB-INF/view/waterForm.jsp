@@ -44,7 +44,7 @@
       </head>
       <body>
         <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
-          <div class="profile-section">
+		<div class="profile-section">
 			<c:choose>
 				<c:when test="${not empty user}">
 					<!-- User Information -->
@@ -56,54 +56,55 @@
 					</div>
 				</c:when>
 				<c:otherwise>
-					<!-- Default content for guest user or when user is not in session -->
-					<div class="user-info">
-						<span class="user-name">Guest</span> <span class="user-role">Guest</span>
-					</div>
-					<div class="user-info">
-						<span class="user-email"></span>
-					</div>
+					<c:redirect url="/logout" />
 				</c:otherwise>
 			</c:choose>
+
 		</div>
-          <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-            <li class="nav-item"><a class="nav-link" href="index.html">
-                <svg class="nav-icon">
-                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
-                </svg> Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="editProfile.html">
-                  <svg class="nav-icon">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-                  </svg> Account</a></li>
-           <li class="nav-item"><a class="nav-link"
+		<ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value = "/home"/>"> <svg class="nav-icon">
+              <use
+							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
+            </svg> Dashboard
+			</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value='/user' />"> <svg class="nav-icon">
+                <use
+							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+              </svg> Account
+			</a></li>
+			<li class="nav-item"><a class="nav-link"
 				href="/EnviroCarbon/submission"> <svg class="nav-icon">
               <use
 							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
             </svg> Submission
 			</a></li>
-            <li class="nav-item"><a class="nav-link" href="leaderboard.html">
-                  <svg class="nav-icon">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-numbered"></use>
-                  </svg> Leaderboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="ebooks.html">
-                  <svg class="nav-icon">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-book"></use>
-                  </svg> E-Books</a></li>
-            <li class="nav-item"><a class="nav-link" href="calendar.html">
-                  <svg class="nav-icon">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-calendar"></use>
-                  </svg> Calendar</a></li>
-            <li class="nav-item"><a class="nav-link" href="settings.html">
-                  <svg class="nav-icon">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
-                  </svg> Settings</a></li>
-            <li class="nav-item"><a class="nav-link" href="logout.html">
-                  <svg class="nav-icon">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-                  </svg> Log Out</a></li>
-          </ul>
-          <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
-        </div>
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value = "/submission/leaderboard"/>"> <svg
+						class="nav-icon">
+                <use
+							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-numbered"></use>
+              </svg> Leaderboard
+			</a></li>
+
+			<li class="nav-item"><a class="nav-link" href="#"> <svg
+						class="nav-icon">
+                <use
+							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
+              </svg> Settings
+			</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value='/logout' />"> <svg class="nav-icon">
+						<a href="<c:url value='/logout' />">Logout</a>
+                <use
+							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
+              </svg> Log Out
+			</a></li>
+		</ul>
+		<button class="sidebar-toggler" type="button"
+			data-coreui-toggle="unfoldable"></button>
+	</div>
         <div class="wrapper d-flex flex-column min-vh-100 bg-light">
           <header class="header header-sticky mb-1">
             <div class="logo">

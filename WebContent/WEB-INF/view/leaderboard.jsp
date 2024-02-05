@@ -66,66 +66,61 @@
 <body>
 	<div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
 		<div class="profile-section">
-			<!-- Profile Picture -->
-			<div class="profile-picture">
-				<img src="assets/img/profile-picture.JPG" alt="Profile Picture">
-			</div>
-			<!-- User Information (if needed) -->
-			<div class="user-info">
-				<span class="user-name">John Doe</span> <span class="user-role">Participant</span>
-			</div>
-			<div class="user-info">
-				<span class="user-email">johndoe@gmail.com</span>
-			</div>
+			<c:choose>
+				<c:when test="${not empty user}">
+					<!-- User Information -->
+					<div class="user-info">
+						<span class="user-name">${user.name}</span>
+					</div>
+					<div class="user-info">
+						<span class="user-email">${user.email}</span>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<c:redirect url="/logout" />
+				</c:otherwise>
+			</c:choose>
+
 		</div>
 		<ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-			<li class="nav-item"><a class="nav-link" href="index.jsp"> <svg
-						class="nav-icon">
-                  <use
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value = "/home"/>"> <svg class="nav-icon">
+              <use
 							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
-                </svg> Dashboard
-			</a></li>
-			<li class="nav-item"><a class="nav-link" href="editProfile.jsp">
-					<svg class="nav-icon">
-                    <use
-							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-                  </svg> Account
+            </svg> Dashboard
 			</a></li>
 			<li class="nav-item"><a class="nav-link"
-				href="submission-menu.jsp"> <svg class="nav-icon">
-                  <use
+				href="<c:url value='/user' />"> <svg class="nav-icon">
+                <use
+							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+              </svg> Account
+			</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="/EnviroCarbon/submission"> <svg class="nav-icon">
+              <use
 							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
-                </svg> Submission
+            </svg> Submission
 			</a></li>
-			<li class="nav-item"><a class="nav-link" href="leaderboard.jsp">
-					<svg class="nav-icon">
-                    <use
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value = "/submission/leaderboard"/>"> <svg
+						class="nav-icon">
+                <use
 							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-numbered"></use>
-                  </svg> Leaderboard
+              </svg> Leaderboard
 			</a></li>
-			<li class="nav-item"><a class="nav-link" href="ebooks.jsp">
-					<svg class="nav-icon">
-                    <use
-							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-book"></use>
-                  </svg> E-Books
-			</a></li>
-			<li class="nav-item"><a class="nav-link" href="calendar.jsp">
-					<svg class="nav-icon">
-                    <use
-							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-calendar"></use>
-                  </svg> Calendar
-			</a></li>
-			<li class="nav-item"><a class="nav-link" href="settings.jsp">
-					<svg class="nav-icon">
-                    <use
+
+			<li class="nav-item"><a class="nav-link" href="#"> <svg
+						class="nav-icon">
+                <use
 							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
-                  </svg> Settings
+              </svg> Settings
 			</a></li>
-			<li class="nav-item"><a class="nav-link" href="logout.jsp">
-					<svg class="nav-icon">
-                    <use
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value='/logout' />"> <svg class="nav-icon">
+						<a href="<c:url value='/logout' />">Logout</a>
+                <use
 							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-                  </svg> Log Out
+              </svg> Log Out
 			</a></li>
 		</ul>
 		<button class="sidebar-toggler" type="button"
