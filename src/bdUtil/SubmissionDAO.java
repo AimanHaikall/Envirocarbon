@@ -66,4 +66,15 @@ public class SubmissionDAO {
 
 		}
 	}
+	
+	public List<Submission> getAllSubmissions() {
+	    try (Session session = HibernateCF.getSessionFactory().openSession()) {
+	        // Use HQL to fetch all submissions
+	        String hql = "FROM Submission";
+	        TypedQuery<Submission> query = session.createQuery(hql, Submission.class);
+
+	        return query.getResultList();
+	    }
+	}
+
 }

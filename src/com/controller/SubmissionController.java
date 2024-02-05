@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.model.Electric;
+import com.model.Submission;
 import com.model.User;
 import com.model.Water;
 
@@ -33,9 +35,27 @@ public class SubmissionController {
 
 	@RequestMapping("/leaderboard")
 	public ModelAndView leaderboard(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("leaderboard"); 
-		return mav;
+	    ModelAndView mav = new ModelAndView("leaderboard");
+
+	    try {
+	        // Retrieve all submissions
+	        List<Submission> submissions = submissionDao.getAllSubmissions();
+
+	        // Sort the list in decreasing order based on the total result
+	        submissions.sort(Comparator.comparingDouble(Submission::calculateTotalResult).reversed());
+
+	        // Add the sorted list to the ModelAndView
+	        mav.addObject("submissions", submissions);
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        mav.addObject("error", "An unexpected error occurred");
+	    }
+
+	    return mav;
 	}
+
+
 
 	@RequestMapping("/calculateWater")
 	public ModelAndView calculateAndFindAverageWater(HttpServletRequest request) {

@@ -28,7 +28,7 @@ public class Submission {
 	@Column(name="resultRecycle")
 	private double resultRecycle;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
 
@@ -63,6 +63,10 @@ public class Submission {
 	public void setResultRecycle(double resultRecycle) {
 		this.resultRecycle = resultRecycle;
 	}
+
+	public double calculateTotalResult() {
+        return getResultWater() + getResultElectric() + getResultRecycle();
+    }
 	
 	
 }
