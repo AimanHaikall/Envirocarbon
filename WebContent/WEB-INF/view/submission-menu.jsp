@@ -120,7 +120,7 @@
 	<div class="wrapper d-flex flex-column min-vh-100 bg-light">
 		<header class="header header-sticky mb-1">
 			<div class="logo">
-				<img src="assets/img/envirocarbon-logo.png" alt="Logo">
+				<img src="assets/logo/envirocarbon_logo.png" alt="Logo">
 			</div>
 			<div class="title ">
 				<h1 style="max-width: 80%;">Pertandingan Kalendar Masyarakat
@@ -158,7 +158,7 @@
 
 				<!-- Recycle Activity -->
 				<li class="submission-item"><a href="recycle.jsp"><img
-						class="category-image" src="assets/img/recycle.jpg"
+						class="category-image" src="assets/img/recycle.png"
 						alt="Recycle Image"></a> <a href="/EnviroCarbon/recycle/list"><span
 						class="title">Recycle Activity</span></a> <!-- <span class="status-complete">Completed</span>-->
 				</li>

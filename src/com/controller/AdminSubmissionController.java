@@ -20,7 +20,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin/submission")
-public class AdminSubmisionController {
+public class AdminSubmissionController {
 
 	@GetMapping
 	public String userAccount(HttpSession session) {
