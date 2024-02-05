@@ -127,7 +127,7 @@
           </header>
           <div class="body flex-grow-1 px-3 ">
             <div class="container-lg ">
-              <form>
+              <form method = "post">
               <div class="body flex-grow-1 px-3" style="margin-top: 40px">
                 <div class="container-lg " >
                     <div class="table-responsive " style="background-color: white;">
@@ -170,6 +170,7 @@
                       </div>
                       <div class="text-end mt-3">
                         <a href="/EnviroCarbon/recycle/add" class="btn btn-primary">Add</a>
+                        <a href="/EnviroCarbon/submission/calculateRecycle" class="btn btn-primary">Submit</a>
                     </div>
                 </div>
                

@@ -146,8 +146,7 @@
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb my-0 ms-2">
 						<li class="breadcrumb-item">
-							<!-- if breadcrumb is single-->
-							<span>Leaderboard</span>
+							<!-- if breadcrumb is single--> <span>Leaderboard</span>
 						</li>
 					</ol>
 				</nav>
@@ -156,32 +155,40 @@
 		<div class="logo">
 			<img src="assets/img/envirocarbon-logo.png" alt="Logo">
 		</div>
-		<div class="container">
-			<table border="1">
-				<thead>
-					<tr>
-						<th>Rank</th>
-						<th>User</th>
-						<th>Result Water</th>
-						<th>Result Electric</th>
-						<th>Result Recycle</th>
-						<th>Total Result</th>
-					</tr>
-				</thead>
-				<tbody>
-					<!-- Iterate through your sorted submissions and display the data -->
-					<c:forEach var="submission" items="${submissions}">
-						<tr>
-							<td>${submissions.indexOf(submission) + 1}</td>
-							<td>${submission.user.name}</td>
-							<td>${submission.resultWater}</td>
-							<td>${submission.resultElectric}</td>
-							<td>${submission.resultRecycle}</td>
-							<td>${submission.calculateTotalResult()}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+		<div class="body flex-grow-1 px-3 ">
+			<div class="container-lg">
+				<div class="body flex-grow-1 px-3" style="margin-top: 40px">
+					<div class="container-lg ">
+						<div class="table-responsive " style="background-color: white;">
+							<table class="table border mb-0">
+								<thead class="table-light fw-semibold">
+									<tr  class="align-middle">
+										<th>Rank</th>
+										<th>User</th>
+										<th>Result Water</th>
+										<th>Result Electric</th>
+										<th>Result Recycle</th>
+										<th>Total Result</th>
+									</tr>
+								</thead>
+								<tbody>
+									<!-- Iterate through your sorted submissions and display the data -->
+									<c:forEach var="submission" items="${submissions}">
+										<tr class="align-middle" style="font-weight: bold">
+											<td>${submissions.indexOf(submission) + 1}</td>
+											<td>${submission.user.name}</td>
+											<td>${submission.resultWater}</td>
+											<td>${submission.resultElectric}</td>
+											<td>${submission.resultRecycle}</td>
+											<td>${submission.calculateTotalResult()}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<footer class="footer">
 			<div>
