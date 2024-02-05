@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,8 @@ import bdUtil.HibernateCF;
 @RequestMapping("/water")
 public class WaterController {
 	
+	
+
 	@GetMapping("/list")
 	public String addWater() {
 	    return "water";
@@ -85,7 +88,7 @@ public class WaterController {
 	}
 
 	@PostMapping("/add")
-	public ModelAndView addWater(HttpServletRequest request) {
+	public ModelAndView addWater(HttpServletRequest request,HttpSession session1) {
 	    ModelAndView modelAndView = new ModelAndView("redirect:/water/list");
 
 	    try {
@@ -98,7 +101,6 @@ public class WaterController {
 	            return modelAndView;
 	        }
 
-	        // Validate and parse input parameters
 	        String dn = request.getParameter("days");
 	        String pf = request.getParameter("prorated");
 	        String cm = request.getParameter("m3");
@@ -122,14 +124,17 @@ public class WaterController {
 	        water.setConsumptionM3(consumptionM3);
 	        water.setConsumptionRM(consumptionRM);
 	        water.setMonth(month);
+	        water.setUser(user);
 
 	        // Associate the Water instance with the User
 	        user.addWater(water);
 
 	        // Save the Water instance, which will cascade the save operation to User
 	        try (Session session = HibernateCF.getSessionFactory().openSession()) {
+
 	            session.beginTransaction();
 	            session.save(water);
+	            session.update(user);
 	            session.getTransaction().commit();
 	            modelAndView.addObject("message", "Program added successfully");
 	        } catch (Exception e) {
@@ -139,7 +144,6 @@ public class WaterController {
 	        }
 
 	    } catch (Exception e) {
-	        // Log the exception
 	        e.printStackTrace();
 	        modelAndView.addObject("error", "An unexpected error occurred");
 	    }

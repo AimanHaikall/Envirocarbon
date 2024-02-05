@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,8 +44,10 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Recycle> recycleList = new ArrayList<>();
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Water> waterList = new ArrayList<>();
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+//    private List<Water> waterList = new ArrayList<>();
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Water> waterList;
 
 	public int getId() {
 		return id;
