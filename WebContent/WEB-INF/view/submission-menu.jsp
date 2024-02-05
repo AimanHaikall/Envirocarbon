@@ -143,21 +143,21 @@
 			<h1 class="page-title">Submit Your:</h1>
 			<ul class="submission-list">
 				<!-- Electric Consumption -->
-				<li class="submission-item"><a href="electric.jsp"><img
+				<li class="submission-item"><a href="/EnviroCarbon/electric/list"><img
 						class="category-image" src="assets/img/electric.png"
-						alt="Electric Image"></a> <a href="electric.jsp"><span
+						alt="Electric Image"></a> <a href="/EnviroCarbon/electric/list"><span
 						class="title">Electric Consumption</span></a> <!-- <span class="status-complete">Completed</span>-->
 				</li>
 
 				<!-- Water Consumption -->
-				<li class="submission-item"><a href="water.jsp"><img
+				<li class="submission-item"><a href="/EnviroCarbon/water/list"><img
 						class="category-image" src="assets/img/water.png"
 						alt="Water Image"></a> <a href="/EnviroCarbon/water/list"><span
 						class="title">Water Consumption</span></a> <!-- <span class="status-complete">Completed</span>-->
 				</li>
 
 				<!-- Recycle Activity -->
-				<li class="submission-item"><a href="recycle.jsp"><img
+				<li class="submission-item"><a href="/EnviroCarbon/recycle/list"><img
 						class="category-image" src="assets/img/recycle.png"
 						alt="Recycle Image"></a> <a href="/EnviroCarbon/recycle/list"><span
 						class="title">Recycle Activity</span></a> <!-- <span class="status-complete">Completed</span>-->
