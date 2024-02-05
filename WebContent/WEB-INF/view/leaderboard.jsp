@@ -153,7 +153,7 @@
 			</div>
 		</header>
 		<div class="logo">
-			<img src="assets/img/envirocarbon-logo.png" alt="Logo">
+			<img src="assets/logo/envirocarbon_logo.png" alt="Logo">
 		</div>
 		<div class="body flex-grow-1 px-3 ">
 			<div class="container-lg">
