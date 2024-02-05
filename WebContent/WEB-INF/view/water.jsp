@@ -67,10 +67,12 @@
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                   </svg> Account</a></li>
-            <li class="nav-item"><a class="nav-link" href="submission-menu.jsp">
-                <svg class="nav-icon">
-                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
-                </svg> Submission</a></li>
+           <li class="nav-item"><a class="nav-link"
+				href="/EnviroCarbon/submission"> <svg class="nav-icon">
+              <use
+							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
+            </svg> Submission
+			</a></li>
             <li class="nav-item"><a class="nav-link" href="leaderboard.jsp">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-numbered"></use>
@@ -124,42 +126,48 @@
                           <thead class="table-light fw-semibold">
                             <tr class="align-middle">
                               
-                              <th >ID</th>
-                              <th >DATE</th>
-                              <th>TITLE</th>
-                              <th >STATUS</th>
-                              <th >RESULT</th>
+                            <th>Days</th>
+                			<th>Prorated Factor</th>
+                			<th>Consumption (m3)</th>
+                			<th>Consumption (RM)</th>
+                			<th>Month</th>
+                			<th>Update</th>
                          
                             </tr>
                           </thead>
                           <tbody >
+                          <c:forEach var="record" items="${waterRecords}">
                             <tr class="align-middle" style="font-weight: bold">
+                            
                               <td>
-                                <div>01</div>
+                                <div>${record.daysNum}</div>
                               </td>
                               <td>
-                                <div>7/12/2023</div>
-                               
+                                <div>${record.proratedFactor}</div>
                               </td>
                               <td >
-                                <div>IPRK COMPETITION JANUARI-JULAI</div>
+                                <div>${record.consumptionM3}</div>
                               </td>
                               <td>
-                                <div>SUBMITTED </div>
+                                <div>${record.consumptionRM} </div>
                               </td>
                               <td >
-                                <div>PARTICIPATED</div>
+                                <div>${record.month}</div>
                               </td>
-                              
+                              <td >
+                                <div>
+                        			<a href="<c:url value='/water/update/${record.id}'/>" class="btn btn-primary">Update</a>
+                    			</div>
+                              </td>
                              
                             </tr>
                            
-                            
+                            </c:forEach>
                           </tbody>
                         </table>
                       </div>
                       <div class="text-end mt-3">
-                        <a href="/EnviroCarbon/water/add" class="btn btn-primary">Next Page</a>
+                        <a href="/EnviroCarbon/water/add" class="btn btn-primary">Add</a>
                     </div>
                 </div>
                

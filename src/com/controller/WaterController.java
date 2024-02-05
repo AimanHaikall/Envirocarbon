@@ -1,5 +1,7 @@
 package com.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -23,62 +25,37 @@ public class WaterController {
 	
 	
 
+//	@GetMapping("/list")
+//	public String addWater() {
+//	    return "water";
+//	}
 	@GetMapping("/list")
-	public String addWater() {
-	    return "water";
-	}
+    public ModelAndView getAll(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView("water");
+
+        try {
+        	HttpSession sessionUser = request.getSession();
+	        User user = (User) sessionUser.getAttribute("user");
+
+            // Validate User
+            if (user == null) {
+                modelAndView.addObject("error", "User not found");
+                return modelAndView;
+            }
+
+            List<Water> waterRecords = user.getWaterList(); // Assuming you have a getWaterList() method in the User class
+
+            
+            modelAndView.addObject("waterRecords", waterRecords);
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelAndView.addObject("error", "An unexpected error occurred");
+        }
+
+        return modelAndView;
+    }
+
 	
-//	@RequestMapping("/add")
-//	public ModelAndView addPost(HttpServletRequest request) {
-//		ModelAndView modelAndView = new ModelAndView("waterForm");
-//	    
-//	    return modelAndView;
-//	}
-//	
-//	@PostMapping("/add")
-//	public ModelAndView addWater(HttpServletRequest request) {
-//	    ModelAndView modelAndView = new ModelAndView("redirect:/water/list");
-//
-//	    try {
-//	        HttpSession sessionUser = request.getSession();
-//	        User user = (User)sessionUser.getAttribute("user");
-//
-//	        String dn = request.getParameter("days");
-//	        int daysNum = Integer.parseInt(dn);
-//	        String pf = request.getParameter("prorated");
-//	        double proratedFactor = Double.parseDouble(pf);
-//	        String cm = request.getParameter("m3");
-//	        double consumptionM3 = Double.parseDouble(cm);
-//	        String cr = request.getParameter("rm");
-//	        double consumptionRM = Double.parseDouble(cr);
-//	        String month = request.getParameter("month");
-//
-//	        Water water = new Water();
-//	        water.setDaysNum(daysNum);
-//	        water.setProratedFactor(proratedFactor);
-//	        water.setConsumptionM3(consumptionM3);
-//	        water.setConsumptionRM(consumptionRM);
-//	        water.setMonth(month);
-//
-//	        // Associate the Water instance with the User
-//	        user.addWater(water);
-//
-//	        // Save the Water instance, which will cascade the save operation to User
-//	        Session session = HibernateCF.getSessionFactory().openSession();
-//	        session.beginTransaction();
-//	        session.save(water);
-//	        session.getTransaction().commit();
-//	        session.close();
-//
-//	        modelAndView.addObject("message", "Program added successfully");
-//
-//	    } catch (Exception e) {
-//	        e.printStackTrace();
-//	        modelAndView.addObject("error", "An error occurred while adding the program");
-//	    }
-//
-//	    return modelAndView;
-//	}
 	
 	@RequestMapping("/add")
 	public ModelAndView addPost(HttpServletRequest request) {
