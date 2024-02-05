@@ -23,7 +23,7 @@ public class Electric {
 	@Column(name="prorated_factor")
 	private double proratedFactor;
 	
-	@Column(name="consumption_m3")
+	@Column(name="consumption_kwh")
 	private double consumptionM3;
 	
 	@Column(name="consumption_rm")

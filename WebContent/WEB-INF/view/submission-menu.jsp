@@ -2,15 +2,9 @@
     pageEncoding="ISO-8859-1"%>
 
 <!DOCTYPE html><!--
-* CoreUI - Free Bootstrap Admin Template
-* @version v4.2.2
-* @link https://coreui.io/product/free-bootstrap-admin-template/
-* Copyright (c) 2023 creativeLabs Łukasz Holeczek
-* Licensed under MIT (https://github.com/coreui/coreui-free-bootstrap-admin-template/blob/main/LICENSE)
---><!-- Breadcrumb-->
 <html lang="en">
   <head>
-    <base href="./">
+    <base href="<%= request.getContextPath() %>/">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -122,21 +116,21 @@
           <li class="submission-item">
             <a href="electric.jsp"><img class="category-image" src="assets/img/electric.jpg" alt="Electric Image"></a>
             <a href="electric.jsp"><span class="title">Electric Consumption</span></a>
-              <span class="status-complete">Completed</span>
+              <!-- <span class="status-complete">Completed</span>-->
           </li>
   
           <!-- Water Consumption -->
           <li class="submission-item">
             <a href="water.jsp"><img class="category-image" src="assets/img/water.jpg" alt="Water Image"></a>
-            <a href="water.jsp"><span class="title">Water Consumption</span></a>
-              <span class="status-incomplete">Incomplete</span>
+            <a href="/EnviroCarbon/water/list"><span class="title">Water Consumption</span></a>
+              <!-- <span class="status-complete">Completed</span>-->
           </li>
   
           <!-- Recycle Activity -->
           <li class="submission-item">
             <a href="recycle.jsp"><img class="category-image" src="assets/img/recycle.jpg" alt="Recycle Image"></a>
             <a href="recycle.jsp"><span class="title">Recycle Activity</span></a>
-              <span class="status-complete">Completed</span>
+              <!-- <span class="status-complete">Completed</span>-->
           </li>
         </ul>
       </div>

@@ -17,4 +17,9 @@ public class RouterController {
     public String homePage() {
         return "home";
     }
+    
+    @GetMapping("/submission")
+    public String submissionMenu() {
+    	return "submission-menu";
+    }
 }

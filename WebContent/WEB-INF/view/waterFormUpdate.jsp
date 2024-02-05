@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ page import="javax.servlet.http.HttpSession"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    
-<c:set var="username" value="${username}" />
-<c:set var="user" value="${sessionScope.user}" />
+    pageEncoding="ISO-8859-1"%>
 
 <!DOCTYPE html>
     <html lang="en">
@@ -116,12 +111,14 @@
           </header>
           <div class="body flex-grow-1 px-3">
             <div class="container-lg">
-               <form action="<c:url value='/water/add'/>" method="post">
- 
+                <form action="${pageContext.request.contextPath}/water/update/${water.id}" method="post">
+               
+               <input type="hidden" id="id" name="id" value="${water.id}">
+               
         <div class="row mb-4" style="margin-top: 20px;">
             <div>
                 <label for="month" class="form-label">Month:</label>
-                <input type="month" id="month" name="month" required>
+                <input type="month" id="month" value="${water.month}" name="month" required>
             </div>
             <div class="col-sm-6 col-lg-6">
                 <div>
@@ -130,7 +127,7 @@
                     </div>
                     <div class="card-body row text-center">
                         <div class="col">
-                            <input type="text" id="days" name="days" class="form-control" required>
+                            <input type="text" id="days" name="days" value="${water.daysNum}" class="form-control" required>
                         </div>
                     </div>
                 </div>
@@ -142,7 +139,7 @@
                     </div>
                     <div class="card-body row text-center">
                         <div class="col">
-                            <input type="text" id="prorated" name="prorated" class="form-control" required>
+                            <input type="text" id="prorated" name="prorated" value="${water.proratedFactor}" class="form-control" required>
                         </div>
                     </div>
                 </div>
@@ -156,7 +153,7 @@
                     </div>
                     <div class="card-body row text-center">
                         <div class="col">
-                            <input type="text" id="m3" name="m3" class="form-control" required>
+                            <input type="text" id="m3" name="m3" value="${water.consumptionM3 }" class="form-control" required>
                         </div>
                     </div>
                 </div>
@@ -168,7 +165,7 @@
                     </div>
                     <div class="card-body row text-center">
                         <div class="col">
-                            <input type="text" id="rm" name="rm" class="form-control" required>
+                            <input type="text" id="rm" name="rm" value="${water.consumptionRM }" class="form-control" required>
                         </div>
                     </div>
                 </div>

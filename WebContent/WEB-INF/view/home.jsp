@@ -71,7 +71,7 @@
               </svg> Account
 			</a></li>
 			<li class="nav-item"><a class="nav-link"
-				href="submission-menu.jsp"> <svg class="nav-icon">
+				href="/EnviroCarbon/submission"> <svg class="nav-icon">
               <use
 							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
             </svg> Submission

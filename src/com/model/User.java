@@ -24,7 +24,6 @@ public class User {
 	@Column(name="name")
 	private String name;
 	
-	
 	@Column(name="username")
 	private String username;
 	
@@ -43,6 +42,9 @@ public class User {
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Recycle> recycleList = new ArrayList<>();
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Water> waterList = new ArrayList<>();
 
 	public int getId() {
 		return id;
@@ -64,6 +66,7 @@ public class User {
 	public String getUsername() {
 		return username;
 	}
+
 
 	public void setUsername(String username) {
 		this.username = username;
@@ -112,6 +115,19 @@ public class User {
 
 	public void setRecycleList(List<Recycle> recycleList) {
 		this.recycleList = recycleList;
+	}
+	
+	public List<Water> getWaterList() {
+		return waterList;
+	}
+
+	public void setWaterList(List<Water> waterList) {
+		this.waterList = waterList;
+	}
+	
+	public void addWater(Water water) {
+	    water.setUser(this);
+	    this.waterList.add(water);
 	}
 	
 }
