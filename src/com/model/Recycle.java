@@ -25,7 +25,7 @@ public class Recycle {
 	private double weightRm;
 	
 	@Column(name="month")
-	private Date month;
+	private String month;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -55,13 +55,21 @@ public class Recycle {
 		this.weightRm = weightRm2;
 	}
 	
-	public Date getMonth() {
+	public String getMonth() {
 		return month;
 	}
 
-	public void setMonth(Date month) {
+	public void setMonth(String month) {
 		this.month = month;
 	}
+	
+	public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 	
 
 }

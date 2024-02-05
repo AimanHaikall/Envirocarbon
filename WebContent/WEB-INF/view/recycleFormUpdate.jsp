@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ page import="javax.servlet.http.HttpSession"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    
-<c:set var="username" value="${username}" />
-<c:set var="user" value="${sessionScope.user}" />
+    pageEncoding="ISO-8859-1"%>
 
 <!DOCTYPE html>
     <html lang="en">
@@ -16,7 +11,7 @@
         <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
         <meta name="author" content="Łukasz Holeczek">
         <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-        <title>CoreUI Free Bootstrap Admin Template</title>
+        <title>Add Water </title>
         <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
@@ -67,37 +62,37 @@
 			</c:choose>
 		</div>
           <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-            <li class="nav-item"><a class="nav-link" href="index.jsp">
+            <li class="nav-item"><a class="nav-link" href="index.html">
                 <svg class="nav-icon">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
                 </svg> Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="editProfile.jsp">
+            <li class="nav-item"><a class="nav-link" href="editProfile.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                   </svg> Account</a></li>
-           <li class="nav-item"><a class="nav-link"
+            <li class="nav-item"><a class="nav-link"
 				href="/EnviroCarbon/submission"> <svg class="nav-icon">
               <use
 							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
             </svg> Submission
 			</a></li>
-            <li class="nav-item"><a class="nav-link" href="leaderboard.jsp">
+            <li class="nav-item"><a class="nav-link" href="leaderboard.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-numbered"></use>
                   </svg> Leaderboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="ebooks.jsp">
+            <li class="nav-item"><a class="nav-link" href="ebooks.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-book"></use>
                   </svg> E-Books</a></li>
-            <li class="nav-item"><a class="nav-link" href="calendar.jsp">
+            <li class="nav-item"><a class="nav-link" href="calendar.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-calendar"></use>
                   </svg> Calendar</a></li>
-            <li class="nav-item"><a class="nav-link" href="settings.jsp">
+            <li class="nav-item"><a class="nav-link" href="settings.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
                   </svg> Settings</a></li>
-            <li class="nav-item"><a class="nav-link" href="logout.jsp">
+            <li class="nav-item"><a class="nav-link" href="logout.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
                   </svg> Log Out</a></li>
@@ -124,72 +119,65 @@
               </nav>
             </div>
           </header>
-          <div class="body flex-grow-1 px-3 ">
-            <div class="container-lg ">
-              <form>
-              <div class="body flex-grow-1 px-3" style="margin-top: 40px">
-                <div class="container-lg " >
-                    <div class="table-responsive " style="background-color: white;">
-                        <table class="table border mb-0">
-                          <thead class="table-light fw-semibold">
-                            <tr class="align-middle">
-                              
-                            <th>ID</th>
-                			<th>Title</th>
-                			<th>Status</th>
-                			<th></th>
-                         
-                            </tr>
-                          </thead>
-                          <tbody >
-                          <c:forEach var="record" items="${recycleRecords}">
-                            <tr class="align-middle" style="font-weight: bold">
-                            
-                              <td>
-                                <div>${record.id}</div>
-                              </td>
-                              <td>
-                                <div><c:out value = "IPRK COMPETITION ${record.month}"/></div>
-                              </td>
-                              <td >
-                                <div>SUBMITTED</div>
-                              </td>
-                              <td >
-                                <div>
-                        			<a href="<c:url value='/recycle/update/${record.id}'/>" class="btn btn-primary">Update</a>
-                        			<a href="<c:url value='/recycle/delete/${record.id}'/>" class="btn btn-danger">Delete</a>
-                    			</div>
-                              </td>
-                             
-                            </tr>
-                           
-                            </c:forEach>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="text-end mt-3">
-                        <a href="/EnviroCarbon/recycle/add" class="btn btn-primary">Add</a>
+          <div class="body flex-grow-1 px-3">
+            <div class="container-lg">
+                <form action="${pageContext.request.contextPath}/recycle/update/${recycle.id}" method="post">
+               
+               <input type="hidden" id="id" name="id" value="${recycle.id}">
+               
+        <div class="row mb-4" style="margin-top: 20px;">
+            <div>
+                <label for="month" class="form-label">Month:</label>
+                <input type="month" id="month" value="${recycle.month}" name="month" required>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-sm-6 col-lg-6">
+                <div>
+                    <div class="card-header position-relative d-flex justify-content-center align-items-center">
+                        <label for="weightKg" class="form-label"><h4>3. Current Recycle weight values (Kg):</h4></label>
+                    </div>
+                    <div class="card-body row text-center">
+                        <div class="col">
+                            <input type="text" id="weightKg" name="weightKg" value="${recycle.weightKg}" class="form-control" required>
+                        </div>
                     </div>
                 </div>
-               
-              
-              </div>
-              
-              </form>
-              
+            </div>
+            <div class="col-sm-6 col-lg-6">
+                <div>
+                    <div class="card-header position-relative d-flex justify-content-center align-items-center">
+                        <label for="weightRm" class="form-label"><h4>4. Current Recycle weight values (RM)</h4></label>
+                    </div>
+                    <div class="card-body row text-center">
+                        <div class="col">
+                            <input type="text" id="weightRm" name="weightRm" value="${recycle.weightRm }" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-end mt-3">
+            <a href="/EnviroCarbon/recycle/list" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </div>
+    </form>
             </div>
           </div>
-    
     
           <footer class="footer">
             <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io">Bootstrap Admin Template</a> © 2023 creativeLabs.</div>
             <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI UI Components</a></div>
           </footer>
         </div>
-        <!-- CoreUI and necessary plugins-->
+        
+     
         <script src="vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
         <script src="vendors/simplebar/js/simplebar.min.js"></script>
-        <script>
+        <script src="vendors/chart.js/js/chart.min.js"></script>
+	    <script src="vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
+	    <script src="vendors/@coreui/utils/js/coreui-utils.js"></script>
+	    <script src="js/main.js"></script>
         </script>
     
       </body>

@@ -1,33 +1,23 @@
-//package bdUtil;
-//
-//import java.sql.Date;
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//import org.hibernate.Session;
-//
-//import com.model.Recycle;
-//import com.model.User;
-//
-//public class RecycleDAO {
-//	public void save(double weightKg, double weightRm, Date month) {
-//		Session session = HibernateCF.getSessionFactory().openSession();
-//		
-//		Recycle recycle = new Recycle();
-//		recycle.setWeightKg(weightKg);
-//		recycle.setWeightRm(weightRm);
-//		recycle.setMonth(month);
-//		
-//		session.beginTransaction();
-//		session.save(recycle);
-//		session.getTransaction().commit();
-//		session.close();
-//	}
-//	
-//	public List<Recycle> getRecycleById(User user){
-//		List<Recycle> recycleList = new ArrayList<>();
-//		recycleList = user.getRecycleList();
-//		
-//		return recycleList;
-//	}
-//}
+package bdUtil;
+
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.TypedQuery;
+
+import org.hibernate.Session;
+
+import com.model.Recycle;
+import com.model.User;
+
+public class RecycleDAO {
+	public List<Recycle> getRecycleByUser(User user) {
+		Session session = HibernateCF.getSessionFactory().openSession();
+        String jpqlQuery = "SELECT w FROM Recycle w WHERE w.user = :user";
+        TypedQuery<Recycle> query = session.createQuery(jpqlQuery, Recycle.class);
+        query.setParameter("user", user);
+        
+        return query.getResultList();
+    }
+}

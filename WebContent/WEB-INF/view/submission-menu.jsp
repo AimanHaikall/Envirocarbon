@@ -129,7 +129,7 @@
           <!-- Recycle Activity -->
           <li class="submission-item">
             <a href="recycle.jsp"><img class="category-image" src="assets/img/recycle.jpg" alt="Recycle Image"></a>
-            <a href="recycle.jsp"><span class="title">Recycle Activity</span></a>
+            <a href="/EnviroCarbon/recycle/list"><span class="title">Recycle Activity</span></a>
               <!-- <span class="status-complete">Completed</span>-->
           </li>
         </ul>
