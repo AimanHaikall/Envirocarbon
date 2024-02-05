@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -110,34 +110,7 @@
         </div>
       </header>
       <div class="container">
-        <h1 class="page-title">Submit Your:</h1>
-        <ul class="submission-list">
-          <!-- Electric Consumption -->
-          <li class="submission-item">
-            <a href="electric.jsp"><img class="category-image" src="assets/img/electric.jpg" alt="Electric Image"></a>
-            <a href="electric.jsp"><span class="title">Electric Consumption</span></a>
-              <!-- <span class="status-complete">Completed</span>-->
-          </li>
-  
-          <!-- Water Consumption -->
-          <li class="submission-item">
-            <a href="water.jsp"><img class="category-image" src="assets/img/water.jpg" alt="Water Image"></a>
-            <a href="/EnviroCarbon/water/list"><span class="title">Water Consumption</span></a>
-              <!-- <span class="status-complete">Completed</span>-->
-          </li>
-  
-          <!-- Recycle Activity -->
-          <li class="submission-item">
-            <a href="recycle.jsp"><img class="category-image" src="assets/img/recycle.jpg" alt="Recycle Image"></a>
-            <a href="/EnviroCarbon/recycle/list"><span class="title">Recycle Activity</span></a>
-              <!-- <span class="status-complete">Completed</span>-->
-          </li>
-        </ul>
-      </div>
-      
-      <div class="body flex-grow-1 px-3">
-        <div class="container-lg">
-        </div>
+        <h1>YOU HAVE SUBMITTED! REFER TO LEADERBOARD <a href="<c:url value = "/submission/leaderboard"/>">HERE</a></h1>
       </div>
       <footer class="footer">
         <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io">Bootstrap Admin Template</a> © 2023 creativeLabs.</div>

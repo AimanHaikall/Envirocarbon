@@ -43,6 +43,21 @@
         <link href="css/examples.css" rel="stylesheet">
       </head>
       <body>
+    <!--  <script>
+	    // Function to toggle the class of the submit button based on the condition
+	    function toggleSubmitButtonClass() {
+	        let electricRecordsCount = ${electricRecordsSize}; // Assuming electricRecords is a list
+	        
+	        // Get the submit button element
+	        let submitBtn = document.getElementById("submitBtn");
+	
+	        // Toggle the class based on the condition
+	        if (electricRecordsCount >= 6) {
+	        	submitBtn.classList.remove("disabled");
+	        }
+	    }
+	</script>-->
+    
         <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
           <div class="profile-section">
             <!-- Profile Picture -->
@@ -126,7 +141,7 @@
                           <thead class="table-light fw-semibold">
                             <tr class="align-middle">
                               
-                            <th>Days</th>
+                            <th>Days ${electricRecordsCount }</th>
                 			<th>Prorated Factor</th>
                 			<th>Consumption (kWh)</th>
                 			<th>Consumption (RM)</th>
@@ -169,6 +184,7 @@
                       </div>
                       <div class="text-end mt-3">
                         <a href="/EnviroCarbon/electric/add" class="btn btn-primary">Add</a>
+                        <a id="submitBtn" href="/EnviroCarbon/electric/final" class="btn btn-primary">Submit</a>
                     </div>
                 </div>
                

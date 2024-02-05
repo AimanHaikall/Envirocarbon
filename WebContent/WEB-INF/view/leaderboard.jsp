@@ -124,9 +124,7 @@
           <div class="leaderboard-container">
             <div class="leaderboard-header">
               <div>Ranking</div>
-              <div>Profile Picture</div>
               <div>Name</div>
-              <div>Email</div>
               <div>Electric</div>
               <div>Water</div>
               <div>Recycle</div>
@@ -135,11 +133,7 @@
         
             <div class="leaderboard-item">
               <div>1</div>
-              <div class="leaderboard-item profile-picture">
-                <img src="user1.jpg" alt="User 1">
-              </div>
               <div>John Doe</div>
-              <div>john@example.com</div>
               <div>100 kWh</div>
               <div>50 gallons</div>
               <div>20 points</div>
@@ -148,11 +142,7 @@
 
             <div class="leaderboard-item">
               <div>2</div>
-                <div class="leaderboard-item profile-picture">
-                  <img src="user1.jpg" alt="User 1">
-                </div>
                 <div>John Doe</div>
-                <div>john@example.com</div>
                 <div>100 kWh</div>
                 <div>50 gallons</div>
                 <div>20 points</div>
@@ -161,11 +151,7 @@
 
               <div class="leaderboard-item">
                 <div>3</div>
-                  <div class="leaderboard-item profile-picture">
-                    <img src="user1.jpg" alt="User 1">
-                  </div>
                   <div>John Doe</div>
-                  <div>john@example.com</div>
                   <div>100 kWh</div>
                   <div>50 gallons</div>
                   <div>20 points</div>

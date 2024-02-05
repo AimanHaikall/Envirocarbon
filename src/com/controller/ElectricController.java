@@ -19,6 +19,7 @@ import com.model.Electric;
 
 import bdUtil.ElectricDAO;
 import bdUtil.HibernateCF;
+import bdUtil.WaterDAO;
 
 @Controller
 @RequestMapping("/electric")
@@ -41,6 +42,7 @@ public class ElectricController {
             List<Electric> electricRecords = electricDao.getElectricByUser(user); 
             
             modelAndView.addObject("electricRecords", electricRecords);
+            modelAndView.addObject("electricRecordsSize", electricRecords.size());
         } catch (Exception e) {
             e.printStackTrace();
             modelAndView.addObject("error", "An unexpected error occurred");
@@ -211,6 +213,49 @@ public class ElectricController {
 	    }
 		
 		return mav;
+	}
+	
+	@RequestMapping("/final")
+	public ModelAndView calculateAndFindAverage(HttpServletRequest request) {
+	    ModelAndView mav = new ModelAndView("resultPage");
+	    ElectricDAO electricDao = new ElectricDAO();
+	    try {
+	    	HttpSession sessionUser = request.getSession();
+	        User user = (User) sessionUser.getAttribute("user");
+	        List<Electric> allElectricSubmissions = electricDao.getElectricByUser(user);  // Assuming you have a method to fetch all submissions
+
+	        if (allElectricSubmissions.isEmpty()) {
+	            mav.addObject("error", "No Electric submissions found");
+	            return mav;
+	        }
+
+	        double totalCalculatedValue = 0.0;
+
+	        for (Electric electric : allElectricSubmissions) {
+	            double calculatedValue = calculateValue(
+	                    electric.getProratedFactor()
+	                   
+	            );
+
+	            totalCalculatedValue += calculatedValue;
+	        }
+
+	        double averageValue = totalCalculatedValue / allElectricSubmissions.size();
+
+	        mav.addObject("averageValue", averageValue);
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        mav.addObject("error", "An unexpected error occurred");
+	    }
+
+	    return mav;
+	}
+
+
+	private double calculateValue(double consumptionKWH) {
+	    
+	    return consumptionKWH * 0.584 ;
 	}
 	
 	
