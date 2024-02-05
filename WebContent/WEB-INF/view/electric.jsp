@@ -1,16 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
+<c:set var="username" value="${username}" />
+<c:set var="user" value="${sessionScope.user}" />
 
-<!DOCTYPE html><!--
-    * CoreUI - Free Bootstrap Admin Template
-    * @version v4.2.2
-    * @link https://coreui.io/product/free-bootstrap-admin-template/
-    * Copyright (c) 2023 creativeLabs Łukasz Holeczek
-    * Licensed under MIT (https://github.com/coreui/coreui-free-bootstrap-admin-template/blob/main/LICENSE)
-    --><!-- Breadcrumb-->
+<!DOCTYPE html>
     <html lang="en">
       <head>
-        <base href="./">
+        <base href="<%= request.getContextPath() %>/">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -68,10 +67,12 @@
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                   </svg> Account</a></li>
-            <li class="nav-item"><a class="nav-link" href="submission-menu.jsp">
-                <svg class="nav-icon">
-                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
-                </svg> Submission</a></li>
+           <li class="nav-item"><a class="nav-link"
+				href="/EnviroCarbon/submission"> <svg class="nav-icon">
+              <use
+							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
+            </svg> Submission
+			</a></li>
             <li class="nav-item"><a class="nav-link" href="leaderboard.jsp">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-numbered"></use>
@@ -125,42 +126,49 @@
                           <thead class="table-light fw-semibold">
                             <tr class="align-middle">
                               
-                              <th >ID</th>
-                              <th >DATE</th>
-                              <th>TITLE</th>
-                              <th >STATUS</th>
-                              <th >RESULT</th>
+                            <th>Days</th>
+                			<th>Prorated Factor</th>
+                			<th>Consumption (kWh)</th>
+                			<th>Consumption (RM)</th>
+                			<th>Month</th>
+                			<th>Update</th>
                          
                             </tr>
                           </thead>
                           <tbody >
+                          <c:forEach var="record" items="${electricRecords}">
                             <tr class="align-middle" style="font-weight: bold">
+                            
                               <td>
-                                <div>01</div>
+                                <div>${record.daysNum}</div>
                               </td>
                               <td>
-                                <div>7/12/2023</div>
-                               
+                                <div>${record.proratedFactor}</div>
                               </td>
                               <td >
-                                <div>IPRK COMPETITION JANUARI-JULAI</div>
+                                <div>${record.consumptionKWH}</div>
                               </td>
                               <td>
-                                <div>SUBMITTED </div>
+                                <div>${record.consumptionRM} </div>
                               </td>
                               <td >
-                                <div>PARTICIPATED</div>
+                                <div>${record.month}</div>
                               </td>
-                              
+                              <td >
+                                <div>
+                        			<a href="<c:url value='/electric/update/${record.id}'/>" class="btn btn-primary">Update</a>
+                        			<a href="<c:url value='/electric/delete/${record.id}'/>" class="btn btn-danger">Delete</a>
+                    			</div>
+                              </td>
                              
                             </tr>
                            
-                            
+                            </c:forEach>
                           </tbody>
                         </table>
                       </div>
                       <div class="text-end mt-3">
-                        <a href="electricJanFeb.jsp" class="btn btn-primary">Next Page</a>
+                        <a href="/EnviroCarbon/electric/add" class="btn btn-primary">Add</a>
                     </div>
                 </div>
                
@@ -185,4 +193,4 @@
         </script>
     
       </body>
-    </html>
+    </html>

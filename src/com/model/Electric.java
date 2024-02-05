@@ -1,9 +1,8 @@
 package com.model;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,15 +23,15 @@ public class Electric {
 	private double proratedFactor;
 	
 	@Column(name="consumption_kwh")
-	private double consumptionM3;
+	private double consumptionKWH;
 	
 	@Column(name="consumption_rm")
 	private double consumptionRM;
 	
 	@Column(name="month")
-	private Date month;
+	private String month;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 	
@@ -60,12 +59,12 @@ public class Electric {
 		this.proratedFactor = proratedFactor;
 	}
 
-	public double getConsumptionM3() {
-		return consumptionM3;
+	public double getConsumptionKWH() {
+		return consumptionKWH;
 	}
 
-	public void setConsumptionM3(double consumptionM3) {
-		this.consumptionM3 = consumptionM3;
+	public void setConsumptionKWH(double consumptionKWH) {
+		this.consumptionKWH = consumptionKWH;
 	}
 
 	public double getConsumptionRM() {
@@ -75,21 +74,23 @@ public class Electric {
 	public void setConsumptionRM(double consumptionRM) {
 		this.consumptionRM = consumptionRM;
 	}
-	
-	public Date getMonth() {
+    
+	public String getMonth() {
 		return month;
 	}
 
-	public void setMonth(Date month) {
+	public void setMonth(String month) {
 		this.month = month;
 	}
-    
+
 	public void setUser(User user) {
         this.user = user;
     }
 
-    public User getUser() {
-        return user;
-    }
+	public User getUser() {
+		return user;
+	}
+
+    
 	
 }

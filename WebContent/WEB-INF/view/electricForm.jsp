@@ -16,7 +16,7 @@
         <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
         <meta name="author" content="Łukasz Holeczek">
         <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-        <title>Add Water </title>
+        <title>Add Electric </title>
         <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
@@ -45,27 +45,19 @@
       <body>
         <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
           <div class="profile-section">
-			<c:choose>
-				<c:when test="${not empty user}">
-					<!-- User Information -->
-					<div class="user-info">
-						<span class="user-name">${user.name}</span>
-					</div>
-					<div class="user-info">
-						<span class="user-email">${user.email}</span>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<!-- Default content for guest user or when user is not in session -->
-					<div class="user-info">
-						<span class="user-name">Guest</span> <span class="user-role">Guest</span>
-					</div>
-					<div class="user-info">
-						<span class="user-email"></span>
-					</div>
-				</c:otherwise>
-			</c:choose>
-		</div>
+            <!-- Profile Picture -->
+            <div class="profile-picture">
+              <img src="assets/img/profile-picture.JPG" alt="Profile Picture">
+            </div>
+            <!-- User Information (if needed) -->
+            <div class="user-info">
+              <span class="user-name">John Doe</span>
+              <span class="user-role">Participant</span>
+            </div>
+            <div class="user-info">
+             <span class="user-email">johndoe@gmail.com</span>
+            </div>
+          </div>
           <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
             <li class="nav-item"><a class="nav-link" href="index.html">
                 <svg class="nav-icon">
@@ -75,12 +67,10 @@
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                   </svg> Account</a></li>
-           <li class="nav-item"><a class="nav-link"
-				href="/EnviroCarbon/submission"> <svg class="nav-icon">
-              <use
-							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
-            </svg> Submission
-			</a></li>
+            <li class="nav-item"><a class="nav-link" href="submission-menu.html">
+                <svg class="nav-icon">
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
+                </svg> Submission</a></li>
             <li class="nav-item"><a class="nav-link" href="leaderboard.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-numbered"></use>
@@ -126,7 +116,7 @@
           </header>
           <div class="body flex-grow-1 px-3">
             <div class="container-lg">
-               <form action="<c:url value='/water/add'/>" method="post">
+               <form action="<c:url value='/electric/add'/>" method="post">
  
         <div class="row mb-4" style="margin-top: 20px;">
             <div>
@@ -162,11 +152,11 @@
             <div class="col-sm-6 col-lg-6">
                 <div>
                     <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                        <label for="m3" class="form-label"><h4>3. Current Water consumption values (m3):</h4></label>
+                        <label for="kwh" class="form-label"><h4>3. Current Electric consumption values (kWh):</h4></label>
                     </div>
                     <div class="card-body row text-center">
                         <div class="col">
-                            <input type="text" id="m3" name="m3" class="form-control" required>
+                            <input type="text" id="kwh" name="kwh" class="form-control" required>
                         </div>
                     </div>
                 </div>
@@ -185,7 +175,7 @@
             </div>
         </div>
         <div class="text-end mt-3">
-            <a href="water.html" class="btn btn-secondary">Cancel</a>
+            <a href="electric.jsp" class="btn btn-secondary">Cancel</a>
             <button type="submit" class="btn btn-primary mt-3">Submit</button>
         </div>
     </form>

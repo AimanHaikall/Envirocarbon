@@ -40,19 +40,27 @@
       <body>
         <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
           <div class="profile-section">
-            <!-- Profile Picture -->
-            <div class="profile-picture">
-              <img src="assets/img/profile-picture.JPG" alt="Profile Picture">
-            </div>
-            <!-- User Information (if needed) -->
-            <div class="user-info">
-              <span class="user-name">John Doe</span>
-              <span class="user-role">Participant</span>
-            </div>
-            <div class="user-info">
-             <span class="user-email">johndoe@gmail.com</span>
-            </div>
-          </div>
+			<c:choose>
+				<c:when test="${not empty user}">
+					<!-- User Information -->
+					<div class="user-info">
+						<span class="user-name">${user.name}</span>
+					</div>
+					<div class="user-info">
+						<span class="user-email">${user.email}</span>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<!-- Default content for guest user or when user is not in session -->
+					<div class="user-info">
+						<span class="user-name">Guest</span> <span class="user-role">Guest</span>
+					</div>
+					<div class="user-info">
+						<span class="user-email"></span>
+					</div>
+				</c:otherwise>
+			</c:choose>
+		</div>
           <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
             <li class="nav-item"><a class="nav-link" href="index.html">
                 <svg class="nav-icon">
@@ -62,10 +70,12 @@
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                   </svg> Account</a></li>
-            <li class="nav-item"><a class="nav-link" href="submission-menu.html">
-                <svg class="nav-icon">
-                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
-                </svg> Submission</a></li>
+            <li class="nav-item"><a class="nav-link"
+				href="/EnviroCarbon/submission"> <svg class="nav-icon">
+              <use
+							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
+            </svg> Submission
+			</a></li>
             <li class="nav-item"><a class="nav-link" href="leaderboard.html">
                   <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-numbered"></use>

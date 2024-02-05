@@ -1,43 +1,33 @@
 package com.controller;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-
 import org.hibernate.Session;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.model.Electric;
 import com.model.User;
 import com.model.Water;
+import com.model.Electric;
 
+import bdUtil.ElectricDAO;
 import bdUtil.HibernateCF;
-import bdUtil.WaterDAO;
 
 @Controller
-@RequestMapping("/water")
-public class WaterController {
-	
-	
+@RequestMapping("/electric")
+public class ElectricController {
 
-//	@GetMapping("/list")
-//	public String addWater() {
-//	    return "water";
-//	}
-	@Transactional
 	@GetMapping("/list")
     public ModelAndView getAll(HttpServletRequest request) {
-        ModelAndView modelAndView = new ModelAndView("water");
-        WaterDAO waterDao = new WaterDAO();
+        ModelAndView modelAndView = new ModelAndView("electric");
+        ElectricDAO electricDao = new ElectricDAO();
         try {
         	HttpSession sessionUser = request.getSession();
 	        User user = (User) sessionUser.getAttribute("user");
@@ -47,12 +37,10 @@ public class WaterController {
                 modelAndView.addObject("error", "User not found");
                 return modelAndView;
             }
-            
-           
-            List<Water> waterRecords = waterDao.getWaterByUser(user);
 
+            List<Electric> electricRecords = electricDao.getElectricByUser(user); 
             
-            modelAndView.addObject("waterRecords", waterRecords);
+            modelAndView.addObject("electricRecords", electricRecords);
         } catch (Exception e) {
             e.printStackTrace();
             modelAndView.addObject("error", "An unexpected error occurred");
@@ -60,25 +48,22 @@ public class WaterController {
 
         return modelAndView;
     }
-
-	
 	
 	@RequestMapping("/add")
 	public ModelAndView addPost(HttpServletRequest request) {
-	    ModelAndView modelAndView = new ModelAndView("waterForm");
+	    ModelAndView modelAndView = new ModelAndView("electricForm");
 
 	    return modelAndView;
 	}
 
 	@PostMapping("/add")
-	public ModelAndView addWater(HttpServletRequest request,HttpSession session1) {
-	    ModelAndView modelAndView = new ModelAndView("redirect:/water/list");
+	public ModelAndView addElectric(HttpServletRequest request,HttpSession session1) {
+	    ModelAndView modelAndView = new ModelAndView("redirect:/electric/list");
 
 	    try {
 	        HttpSession sessionUser = request.getSession();
 	        User user = (User) sessionUser.getAttribute("user");
 
-	        // Validate User Session
 	        if (user == null) {
 	            modelAndView.addObject("error", "User not logged in");
 	            return modelAndView;
@@ -86,33 +71,36 @@ public class WaterController {
 
 	        String dn = request.getParameter("days");
 	        String pf = request.getParameter("prorated");
-	        String cm = request.getParameter("m3");
+	        String kwh = request.getParameter("kwh");
 	        String cr = request.getParameter("rm");
 	        String month = request.getParameter("month");
 
 	        if (dn == null || dn.isEmpty() || pf == null || pf.isEmpty()
-	                || cm == null || cm.isEmpty() || cr == null || cr.isEmpty() || month == null || month.isEmpty()) {
+	                || kwh == null || kwh.isEmpty() || cr == null || cr.isEmpty() || month == null || month.isEmpty()) {
 	            modelAndView.addObject("error", "All fields are required");
 	            return modelAndView;
 	        }
 
 	        int daysNum = Integer.parseInt(dn);
 	        double proratedFactor = Double.parseDouble(pf);
-	        double consumptionM3 = Double.parseDouble(cm);
+	        double consumptionkwh = Double.parseDouble(kwh);
 	        double consumptionRM = Double.parseDouble(cr);
 
-	        Water water = new Water();
-	        water.setDaysNum(daysNum);
-	        water.setProratedFactor(proratedFactor);
-	        water.setConsumptionM3(consumptionM3);
-	        water.setConsumptionRM(consumptionRM);
-	        water.setMonth(month);
-	        water.setUser(user);
+	        Electric electric = new Electric();
+	        electric.setDaysNum(daysNum);
+	        electric.setProratedFactor(proratedFactor);
+	        electric.setConsumptionKWH(consumptionkwh);
+	        electric.setConsumptionRM(consumptionRM);
+	        electric.setMonth(month);
+	        electric.setUser(user);
 
-	        // Save the Water instance, which will cascade the save operation to User
+//	        user.addElectric(electric);
+
 	        try (Session session = HibernateCF.getSessionFactory().openSession()) {
+
 	            session.beginTransaction();
-	            session.save(water);
+	            session.save(electric);
+//	            session.update(user);
 	            session.getTransaction().commit();
 	            modelAndView.addObject("message", "Program added successfully");
 	        } catch (Exception e) {
@@ -128,102 +116,98 @@ public class WaterController {
 
 	    return modelAndView;
 	}
-
-
-
-
 	
 	@RequestMapping("/update/{id}")
 	public ModelAndView updatePost(@PathVariable int id, HttpServletRequest request) {
-	    ModelAndView modelAndView = new ModelAndView("waterFormUpdate");
+	    ModelAndView modelAndView = new ModelAndView("electricFormUpdate");
 
 	    try {
 	        Session session = HibernateCF.getSessionFactory().openSession();
-	        Water water = session.get(Water.class, id);
+	        Electric electric = session.get(Electric.class, id);
 	        session.close();
 
-	        if (water != null) {
-	            modelAndView.addObject("water", water);
+	        if (electric != null) {
+	            modelAndView.addObject("electric", electric);
 	        } else {
-	            modelAndView.addObject("error", "Water record not found");
+	            modelAndView.addObject("error", "Electric record not found");
 	        }
 
 	    } catch (Exception e) {
 	        e.printStackTrace();
-	        modelAndView.addObject("error", "An error occurred while fetching the water record");
+	        modelAndView.addObject("error", "An error occurred while fetching the electric record");
 	    }
 
 	    return modelAndView;
 	}
 	
 	@PostMapping("/update/{id}")
-	public ModelAndView updateWater(@PathVariable int id, HttpServletRequest request) {
-	    ModelAndView modelAndView = new ModelAndView("redirect:/water/list");
+	public ModelAndView updateElectric(@PathVariable int id, HttpServletRequest request) {
+	    ModelAndView modelAndView = new ModelAndView("redirect:/electric/list");
 
 	    try {
 	        Session session = HibernateCF.getSessionFactory().openSession();
 	        session.beginTransaction();
 
-	        Water water = session.get(Water.class, id);
+	        Electric electric = session.get(Electric.class, id);
 
-	        if (water != null) {
+	        if (electric != null) {
 	            String dn = request.getParameter("days");
 	            int daysNum = Integer.parseInt(dn);
 	            String pf = request.getParameter("prorated");
 	            double proratedFactor = Double.parseDouble(pf);
-	            String cm = request.getParameter("m3");
-	            double consumptionM3 = Double.parseDouble(cm);
+	            String kwh = request.getParameter("kwh");
+	            double consumptionKWH = Double.parseDouble(kwh);
 	            String cr = request.getParameter("rm");
 	            double consumptionRM = Double.parseDouble(cr);
 	            String month = request.getParameter("month");
 
-	            water.setDaysNum(daysNum);
-	            water.setProratedFactor(proratedFactor);
-	            water.setConsumptionM3(consumptionM3);
-	            water.setConsumptionRM(consumptionRM);
-	            water.setMonth(month);
+	            electric.setDaysNum(daysNum);
+	            electric.setProratedFactor(proratedFactor);
+	            electric.setConsumptionKWH(consumptionKWH);
+	            electric.setConsumptionRM(consumptionRM);
+	            electric.setMonth(month);
 
-	            session.update(water);
+	            session.update(electric);
 	            session.getTransaction().commit();
 	            session.close();
 
-	            modelAndView.addObject("message", "Water record updated successfully");
+	            modelAndView.addObject("message", "Electric record updated successfully");
 	        } else {
-	            modelAndView.addObject("error", "Water record not found");
+	            modelAndView.addObject("error", "Electric record not found");
 	        }
 
 	    } catch (Exception e) {
 	        e.printStackTrace();
-	        modelAndView.addObject("error", "An error occurred while updating the water record");
+	        modelAndView.addObject("error", "An error occurred while updating the electric record");
 	    }
 
 	    return modelAndView;
 	}
 	
 	@RequestMapping("/delete/{id}")
-	public ModelAndView deleteWater(@PathVariable int id, HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("redirect:/water/list");
+	public ModelAndView deleteElectric(@PathVariable int id, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("redirect:/electric/list");
 		
 		try {
 	        Session session = HibernateCF.getSessionFactory().openSession();
 	        session.beginTransaction();
 
-	        Water water = session.get(Water.class, id);
+	        Electric electric = session.get(Electric.class, id);
 
-	        if (water != null) {
+	        if (electric != null) {
 
-	            session.delete(water);
+	            session.delete(electric);
 	            session.getTransaction().commit();
 	            session.close();
 
-	            mav.addObject("message", "Water record deleted successfully");
+	            mav.addObject("message", "Electric record deleted successfully");
 	        } else {
-	            mav.addObject("error", "Water record not found");
+	            mav.addObject("error", "Electric record not found");
 	        }
 
 	    } catch (Exception e) {
 	        e.printStackTrace();
-	        mav.addObject("error", "An error occurred while deleting the water record");
+	        mav.addObject("error", "An error occurred while deleting the electric record");
 	    }
 		
 		return mav;
