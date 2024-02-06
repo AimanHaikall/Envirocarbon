@@ -60,20 +60,13 @@
 <link href="css/examples.css" rel="stylesheet">
 </head>
 <body>
-	<!--  <script>
-	    // Function to toggle the class of the submit button based on the condition
-	    function toggleSubmitButtonClass() {
-	        let electricRecordsCount = ${electricRecordsSize}; // Assuming electricRecords is a list
-	        
-	        // Get the submit button element
-	        let submitBtn = document.getElementById("submitBtn");
-	
-	        // Toggle the class based on the condition
-	        if (electricRecordsCount >= 6) {
-	        	submitBtn.classList.remove("disabled");
-	        }
-	    }
-	</script>-->
+<c:if test="${not empty msg}">
+<script type="text/javascript">
+    
+        alert("Your submission is less than 6 entries. Please add more to submit.");
+    
+    </script>
+    </c:if>
 
 	<div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
 		<div class="profile-section">

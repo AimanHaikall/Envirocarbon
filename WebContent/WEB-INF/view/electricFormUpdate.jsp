@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ page import="javax.servlet.http.HttpSession"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    
-<c:set var="username" value="${username}" />
-<c:set var="user" value="${sessionScope.user}" />
+    pageEncoding="ISO-8859-1"%>
 
 <!DOCTYPE html>
     <html lang="en">
@@ -16,7 +11,7 @@
         <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
         <meta name="author" content="Łukasz Holeczek">
         <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-        <title>Add Water </title>
+        <title>Add Electric </title>
         <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
@@ -42,9 +37,7 @@
         <!-- We use those styles to show code examples, you should remove them in your application.-->
         <link href="css/examples.css" rel="stylesheet">
       </head>
-      
-    
-      <body >
+      <body>
         <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
 		<div class="profile-section">
 			<c:choose>
@@ -129,12 +122,14 @@
           </header>
           <div class="body flex-grow-1 px-3">
             <div class="container-lg">
-               <form action="<c:url value='/water/add'/>" method="post">
- 
+                <form action="${pageContext.request.contextPath}/electric/update/${electric.id}" method="post">
+               
+               <input type="hidden" id="id" name="id" value="${electric.id}">
+               
         <div class="row mb-4" style="margin-top: 20px;">
             <div>
                 <label for="month" class="form-label">Month:</label>
-                <input type="month" id="month" name="month" required>
+                <input type="month" id="month" value="${electric.month}" name="month" required>
             </div>
             <div class="col-sm-6 col-lg-6">
                 <div>
@@ -143,7 +138,7 @@
                     </div>
                     <div class="card-body row text-center">
                         <div class="col">
-                            <input type="text" id="days" name="days" class="form-control" required>
+                            <input type="text" id="days" name="days" value="${electric.daysNum}" class="form-control" required>
                         </div>
                     </div>
                 </div>
@@ -155,7 +150,7 @@
                     </div>
                     <div class="card-body row text-center">
                         <div class="col">
-                            <input type="text" id="prorated" name="prorated" class="form-control" required>
+                            <input type="text" id="prorated" name="prorated" value="${electric.proratedFactor}" class="form-control" required>
                         </div>
                     </div>
                 </div>
@@ -165,11 +160,11 @@
             <div class="col-sm-6 col-lg-6">
                 <div>
                     <div class="card-header position-relative d-flex justify-content-center align-items-center">
-                        <label for="m3" class="form-label"><h4>3. Current Water consumption values (m3):</h4></label>
+                        <label for="kwh" class="form-label"><h4>3. Current Electric consumption values (kwh):</h4></label>
                     </div>
                     <div class="card-body row text-center">
                         <div class="col">
-                            <input type="text" id="m3" name="m3" class="form-control" required>
+                            <input type="text" id="kwh" name="kwh" value="${electric.consumptionKWH }" class="form-control" required>
                         </div>
                     </div>
                 </div>
@@ -181,14 +176,14 @@
                     </div>
                     <div class="card-body row text-center">
                         <div class="col">
-                            <input type="text" id="rm" name="rm" class="form-control" required>
+                            <input type="text" id="rm" name="rm" value="${electric.consumptionRM }" class="form-control" required>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="text-end mt-3">
-            <a href="EnviroCarbon/water/list" class="btn btn-secondary">Cancel</a>
+            <a href="/EnviroCarbon/electric/list" class="btn btn-secondary">Cancel</a>
             <button type="submit" class="btn btn-primary mt-3">Submit</button>
         </div>
     </form>

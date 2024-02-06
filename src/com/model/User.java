@@ -100,39 +100,7 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-//
-//	public List<Electric> getElectricList() {
-//        return electricList;
-//    }
-//
-//    public void setElectricList(List<Electric> electricList) {
-//        this.electricList = electricList;
-//    }
-//
-//    public void addElectric(Electric electric) {
-//        electric.setUser(this);
-//        this.electricList.add(electric);
-//    }
-//    
-//    public List<Recycle> getRecycleList() {
-//		return recycleList;
-//	}
-//
-//	public void setRecycleList(List<Recycle> recycleList) {
-//		this.recycleList = recycleList;
-//	}
-//	
-//	public List<Water> getWaterList() {
-//		return waterList;
-//	}
-//
-//	public void setWaterList(List<Water> waterList) {
-//		this.waterList = waterList;
-//	}
-//	
-//	public void addWater(Water water) {
-//	    water.setUser(this);
-//	    this.waterList.add(water);
-//	}
+
+
 	
 }

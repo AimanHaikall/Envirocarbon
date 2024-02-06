@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <!--
@@ -173,16 +174,28 @@
 								</thead>
 								<tbody>
 									<!-- Iterate through your sorted submissions and display the data -->
-									<c:forEach var="submission" items="${submissions}">
+									<!--<c:forEach var="submission" items="${submissions}">
 										<tr class="align-middle" style="font-weight: bold">
 											<td>${submissions.indexOf(submission) + 1}</td>
 											<td>${submission.user.name}</td>
-											<td>${submission.resultWater}</td>
-											<td>${submission.resultElectric}</td>
-											<td>${submission.resultRecycle}</td>
-											<td>${submission.calculateTotalResult()}</td>
+											<td><fmt:formatNumber value="${submission.resultWater}" pattern="#,##0.00" /></td>
+											<td><fmt:formatNumber value="${submission.resultElectric}" pattern="#,##0.00" /></td>
+											<td><fmt:formatNumber value="${submission.resultRecycle}" pattern="#,##0.00" /></td>
+											<td><fmt:formatNumber value="${submission.calculateTotalResult()}" pattern="#,##0.00" /></td>
 										</tr>
-									</c:forEach>
+									</c:forEach>-->
+									<c:forEach var="submission" items="${submissions}">
+    <c:if test="${submission.resultWater != 0 && submission.resultElectric != 0 && submission.resultRecycle != 0}">
+        <tr class="align-middle" style="font-weight: bold">
+            <td>${submissions.indexOf(submission) + 1}</td>
+            <td>${submission.user.name}</td>
+            <td><fmt:formatNumber value="${submission.resultWater}" pattern="#,##0.00" /></td>
+            <td><fmt:formatNumber value="${submission.resultElectric}" pattern="#,##0.00" /></td>
+            <td><fmt:formatNumber value="${submission.resultRecycle}" pattern="#,##0.00" /></td>
+            <td><fmt:formatNumber value="${submission.calculateTotalResult()}" pattern="#,##0.00" /></td>
+        </tr>
+    </c:if>
+</c:forEach>
 								</tbody>
 							</table>
 						</div>

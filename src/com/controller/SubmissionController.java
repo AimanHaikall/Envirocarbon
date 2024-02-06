@@ -67,6 +67,12 @@ public class SubmissionController {
 			User user = (User) sessionUser.getAttribute("user");
 
 			List<Water> allWaterSubmissions = waterDao.getWaterByUser(user);
+			
+			if(allWaterSubmissions.size() < 6) {
+				mav.addObject("msg", "Your submission is less than 6. Please add more to submit.");
+				mav.setViewName("redirect:/water/list");
+				return mav;
+			}
 
 			if (allWaterSubmissions.isEmpty()) {
 				mav.addObject("error", "No water submissions found");
@@ -101,7 +107,12 @@ public class SubmissionController {
 			User user = (User) sessionUser.getAttribute("user");
 			List<Electric> allElectricSubmissions = electricDao.getElectricByUser(user); // Assuming you have a method
 																							// to fetch all submissions
-
+			if(allElectricSubmissions.size() < 6) {
+				mav.addObject("msg", "Your submission is less than 6. Please add more to submit.");
+				mav.setViewName("redirect:/electric/list");
+				return mav;
+			}
+			
 			if (allElectricSubmissions.isEmpty()) {
 				mav.addObject("error", "No Electric submissions found");
 				return mav;
@@ -138,7 +149,12 @@ public class SubmissionController {
 			User user = (User) sessionUser.getAttribute("user");
 			List<Recycle> allRecycleSubmissions = recycleDao.getRecycleByUser(user); // Assuming you have a method
 																							// to fetch all submissions
-
+			if(allRecycleSubmissions.size() < 6) {
+				mav.addObject("msg", "Your submission is less than 6. Please add more to submit.");
+				mav.setViewName("redirect:/recycle/list");
+				return mav;
+			}
+			
 			if (allRecycleSubmissions.isEmpty()) {
 				mav.addObject("error", "No Recycle submissions found");
 				return mav;

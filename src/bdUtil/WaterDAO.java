@@ -1,6 +1,5 @@
 package bdUtil;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +7,8 @@ import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
 
-import com.model.Water;
 import com.model.User;
+import com.model.Water;
 
 public class WaterDAO {
 	public List<Water> getWaterByUser(User user) {

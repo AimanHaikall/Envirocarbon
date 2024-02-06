@@ -1,5 +1,10 @@
 package com.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.hibernate.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,15 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.model.Submission;
 import com.model.User;
-import com.model.Water;
 
 import bdUtil.HibernateCF;
 import bdUtil.SubmissionDAO;
-
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
@@ -54,6 +53,7 @@ public class UserController {
 			return mav;
 		}
 	}
+	
 
 	@GetMapping("/user")
 	public String userProfilePage(HttpSession session) {

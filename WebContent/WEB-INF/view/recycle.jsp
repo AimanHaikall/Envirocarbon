@@ -59,6 +59,14 @@
 					<c:redirect url="/logout" />
 				</c:otherwise>
 			</c:choose>
+			
+<c:if test="${not empty msg}">
+<script type="text/javascript">
+    
+        alert("Your submission is less than 6 entries. Please add more to submit.");
+    
+    </script>
+    </c:if>
 
 		</div>
 		<ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">

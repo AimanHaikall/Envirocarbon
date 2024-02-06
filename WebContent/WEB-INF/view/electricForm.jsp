@@ -217,7 +217,7 @@
 						</div>
 					</div>
 					<div class="text-end mt-3">
-						<a href="electric.jsp" class="btn btn-secondary">Cancel</a>
+						<a href="EnviroCarbon/electric/list" class="btn btn-secondary">Cancel</a>
 						<button type="submit" class="btn btn-primary mt-3">Submit</button>
 					</div>
 				</form>

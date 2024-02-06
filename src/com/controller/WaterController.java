@@ -70,10 +70,70 @@ public class WaterController {
 	    return modelAndView;
 	}
 
+//	@PostMapping("/add")
+//	public ModelAndView addWater(HttpServletRequest request,HttpSession session1) {
+//	    ModelAndView modelAndView = new ModelAndView("redirect:/water/list");
+//
+//	    try {
+//	        HttpSession sessionUser = request.getSession();
+//	        User user = (User) sessionUser.getAttribute("user");
+//
+//	        // Validate User Session
+//	        if (user == null) {
+//	            modelAndView.addObject("error", "User not logged in");
+//	            return modelAndView;
+//	        }
+//
+//	        String dn = request.getParameter("days");
+//	        String pf = request.getParameter("prorated");
+//	        String cm = request.getParameter("m3");
+//	        String cr = request.getParameter("rm");
+//	        String month = request.getParameter("month");
+//
+//	        if (dn == null || dn.isEmpty() || pf == null || pf.isEmpty()
+//	                || cm == null || cm.isEmpty() || cr == null || cr.isEmpty() || month == null || month.isEmpty()) {
+//	            modelAndView.addObject("error", "All fields are required");
+//	            return modelAndView;
+//	        }
+//
+//	        int daysNum = Integer.parseInt(dn);
+//	        double proratedFactor = Double.parseDouble(pf);
+//	        double consumptionM3 = Double.parseDouble(cm);
+//	        double consumptionRM = Double.parseDouble(cr);
+//
+//	        Water water = new Water();
+//	        water.setDaysNum(daysNum);
+//	        water.setProratedFactor(proratedFactor);
+//	        water.setConsumptionM3(consumptionM3);
+//	        water.setConsumptionRM(consumptionRM);
+//	        water.setMonth(month);
+//	        water.setUser(user);
+//
+//	        // Save the Water instance, which will cascade the save operation to User
+//	        try (Session session = HibernateCF.getSessionFactory().openSession()) {
+//	            session.beginTransaction();
+//	            session.save(water);
+//	            session.getTransaction().commit();
+//	            modelAndView.addObject("message", "Program added successfully");
+//	        } catch (Exception e) {
+//	            // Log the exception
+//	            e.printStackTrace();
+//	            modelAndView.addObject("error", "An error occurred while adding the program");
+//	        }
+//
+//	    } catch (Exception e) {
+//	        e.printStackTrace();
+//	        modelAndView.addObject("error", "An unexpected error occurred");
+//	    }
+//
+//	    return modelAndView;
+//	}
+	
 	@PostMapping("/add")
-	public ModelAndView addWater(HttpServletRequest request,HttpSession session1) {
+	public ModelAndView addWater(HttpServletRequest request, HttpSession session1) {
 	    ModelAndView modelAndView = new ModelAndView("redirect:/water/list");
-
+	    WaterDAO waterDao = new WaterDAO();
+	    
 	    try {
 	        HttpSession sessionUser = request.getSession();
 	        User user = (User) sessionUser.getAttribute("user");
@@ -114,11 +174,11 @@ public class WaterController {
 	            session.beginTransaction();
 	            session.save(water);
 	            session.getTransaction().commit();
-	            modelAndView.addObject("message", "Program added successfully");
+	            modelAndView.addObject("message", "Water entry added successfully");
 	        } catch (Exception e) {
 	            // Log the exception
 	            e.printStackTrace();
-	            modelAndView.addObject("error", "An error occurred while adding the program");
+	            modelAndView.addObject("error", "An error occurred while adding the water entry");
 	        }
 
 	    } catch (Exception e) {

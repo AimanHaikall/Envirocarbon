@@ -43,6 +43,9 @@
         <link href="css/examples.css" rel="stylesheet">
       </head>
       <body>
+
+
+
         <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
 		<div class="profile-section">
 			<c:choose>
@@ -125,6 +128,14 @@
               </nav>
             </div>
           </header>
+<c:if test="${not empty msg}">
+<script type="text/javascript">
+    
+        alert("Your submission is less than 6 entries. Please add more to submit.");
+    
+    </script>
+    </c:if>
+
           <div class="body flex-grow-1 px-3 ">
             <div class="container-lg ">
               <form method = "post">
