@@ -12,28 +12,35 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="submission")
+@Table(name = "submission")
 public class Submission {
 	@Id
-	@Column(name="id")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@Column(name="resultWater")
+
+	@Column(name = "resultWater")
 	private double resultWater;
-	
-	@Column(name="resultElectric")
+
+	@Column(name = "resultElectric")
 	private double resultElectric;
 
-	@Column(name="resultRecycle")
+	@Column(name = "resultRecycle")
 	private double resultRecycle;
-	
+
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
 
 	public User getUser() {
 		return user;
+	}
+
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public void setUser(User user) {
@@ -65,8 +72,7 @@ public class Submission {
 	}
 
 	public double calculateTotalResult() {
-        return getResultWater() + getResultElectric() + getResultRecycle();
-    }
-	
-	
+		return getResultWater() + getResultElectric() + getResultRecycle();
+	}
+
 }

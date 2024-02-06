@@ -214,7 +214,7 @@
 							</div>
 							<div class="text-end mt-3">
 								<a href="/EnviroCarbon/electric/add" class="btn btn-primary">Add</a>
-								<a id="submitBtn" href="/EnviroCarbon/electric/final"
+								<a id="submitBtn" href="/EnviroCarbon/submission/calculateElectric"
 									class="btn btn-primary">Submit</a>
 							</div>
 						</div>

@@ -39,6 +39,7 @@ public class LoginController {
 	        return "redirect:/home";
 	    }
 
+	    session.invalidate();
 	    // If no one is authenticated, return the login page
 	    return "login";
 	}

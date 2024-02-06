@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/view/admin/home.jsp=UTF-8
 encoding//WebContent/WEB-INF/view/electric.jsp=UTF-8
 encoding//WebContent/WEB-INF/view/electricForm.jsp=UTF-8
 encoding//WebContent/WEB-INF/view/login.jsp=UTF-8

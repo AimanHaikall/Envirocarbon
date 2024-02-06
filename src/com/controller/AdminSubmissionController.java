@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.model.User;
+import com.model.Submission;
 
 import bdUtil.HibernateCF;
+import bdUtil.SubmissionDAO;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -23,177 +25,193 @@ import java.util.List;
 public class AdminSubmissionController {
 
 	@GetMapping
-	public String userAccount(HttpSession session) {
+	public String submissionAccount(HttpSession session) {
 		if (session.getAttribute("adminUsername") == null) {
 			return "/login";
 		}
-		return "redirect:/admin/user/getAll";
+		return "redirect:/admin/submission/getAll";
 	}
 
 	@RequestMapping("/getAll")
 	public ModelAndView getAll() {
-		ModelAndView modelAndView = new ModelAndView("admin/usermanagement");
+		ModelAndView modelAndView = new ModelAndView("admin/submission");
 		Session session = HibernateCF.getSessionFactory().openSession();
 
 		@SuppressWarnings("unchecked")
-		List<User> pList = session.createQuery("from User").list();
-		for (User user : pList) {
-			System.out.println(user);
+		List<Submission> pList = session.createQuery("from Submission").list();
+
+		if (pList.isEmpty()) {
+		    // Handle the case when the list is empty
+		    modelAndView.addObject("errorMessage", "No submissions found.");
+		} else {
+		    // Add the list to the model when it's not empty
+		    modelAndView.addObject("submissions", pList);
 		}
-		modelAndView.addObject("users", pList);
+
 		modelAndView.addObject("currentView", "getAll");
-
 		return modelAndView;
-	}
 
-	@RequestMapping("/add")
-	public ModelAndView add(HttpServletRequest request) {
-		ModelAndView modelAndView = new ModelAndView("redirect:/admin/user/getAll");
-
-		Session session = HibernateCF.getSessionFactory().openSession();
-
-		User prog = new User();
-		prog.setName(request.getParameter("name"));
-		prog.setUsername(request.getParameter("username"));
-		prog.setPhoneNum(request.getParameter("phoneNum"));
-		prog.setEmail(request.getParameter("email"));
-		prog.setPassword(request.getParameter("password"));
-		session.beginTransaction();
-		session.save(prog);
-		session.getTransaction().commit();
-		session.close();
-
-		modelAndView.addObject("message", "User added successfully!");
-		modelAndView.addObject("currentView", "add");
-
-		return modelAndView;
 	}
 
 	@RequestMapping("/getById")
 	public ModelAndView getById(HttpServletRequest request) {
-		ModelAndView modelAndView = new ModelAndView("admin/usermanagement");
+		ModelAndView modelAndView = new ModelAndView("admin/submission");
 
 		try {
 			int id = Integer.parseInt(request.getParameter("id"));
 			Session session = HibernateCF.getSessionFactory().openSession();
-			User p = session.get(User.class, id);
+			Submission p = session.get(Submission.class, id);
 
 			if (p != null) {
-				List<User> userList = new ArrayList<>();
-				userList.add(p);
-				modelAndView.addObject("users", userList);
+				List<Submission> submissionList = new ArrayList<>();
+				submissionList.add(p);
+				modelAndView.addObject("submissions", submissionList);
 				modelAndView.addObject("currentView", "getById");
 			} else {
-				modelAndView.addObject("message", "User with ID " + id + " does not exist.");
-				modelAndView.setViewName("redirect:/admin/user/getAll");
+				modelAndView.addObject("message", "Submission with ID " + id + " does not exist.");
+				modelAndView.setViewName("redirect:/admin/submission/getAll");
 			}
 		} catch (NumberFormatException e) {
 			modelAndView.addObject("message", "Invalid format!");
-			modelAndView.setViewName("redirect:/admin/user/getAll");
+			modelAndView.setViewName("redirect:/admin/submission/getAll");
 		}
 
 		return modelAndView;
 	}
 
 	@PostMapping("/update")
-	public ModelAndView updateUser(HttpServletRequest request) {
-		ModelAndView modelAndView = new ModelAndView("admin/usermanagement");
+	public ModelAndView updateSubmission(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("admin/submission");
 
 		String idParam = request.getParameter("id");
-		String name = request.getParameter("newName");
-		String email = request.getParameter("newEmail");
-		String phoneNum = request.getParameter("newPhoneNum");
-		String username = request.getParameter("newUsername");
-		String password = request.getParameter("newPassword");
+		double resultWater = 0;
+		double resultElectric = 0;
+		double resultRecycle = 0;
+		
+		String newResultWaterParam = request.getParameter("newResultWater");
+		String newResultElectricParam = request.getParameter("newResultElectric");
+		String newResultRecycleParam = request.getParameter("newResultRecycle");
 
+		if (!newResultWaterParam.isEmpty()) {
+		    resultWater = Double.parseDouble(newResultWaterParam);
+		}
+
+		if (!newResultElectricParam.isEmpty()) {
+		    resultElectric = Double.parseDouble(newResultElectricParam);
+		}
+
+		if (!newResultRecycleParam.isEmpty()) {
+		    resultRecycle = Double.parseDouble(newResultRecycleParam);
+		}
+		
 		modelAndView.addObject("currentView", "update");
 
 		try {
 			int id = Integer.parseInt(idParam);
 
 			Session session = HibernateCF.getSessionFactory().openSession();
-			User user = session.get(User.class, id);
+			Submission submission = session.get(Submission.class, id);
 
-			if (name != null || email != null || phoneNum != null || username != null || password != null) {
+			if (resultWater > 0 || resultElectric > 0 || resultRecycle > 0) {
 
 				// Update only non-null fields
-				if (name != "")
-					user.setName(name);
-				if (email != "")
-					user.setEmail(email);
-				if (phoneNum != "")
-					user.setPhoneNum(phoneNum);
-				if (username != "")
-					user.setUsername(username);
-				if (password != "")
-					user.setPassword(password);
+				if (resultWater > 0 )
+					submission.setResultWater(resultWater);
+				if (resultElectric > 0 )
+					submission.setResultElectric(resultElectric);
+				if (resultRecycle > 0 )
+					submission.setResultRecycle(resultRecycle);
+
 
 				session.beginTransaction();
-				session.update(user);
+				session.update(submission);
 				session.getTransaction().commit();
 				session.close();
 
-				// Redirect to "/user/getAll" with success message
-				modelAndView.addObject("message", "User (ID: " + id + ") updated successfully!");
-				modelAndView.setViewName("redirect:/admin/user/getAll");
+				// Redirect to "/submission/getAll" with success message
+				modelAndView.addObject("message", "Submission (ID: " + id + ") updated successfully!");
+				modelAndView.setViewName("redirect:/admin/submission/getAll");
 
 			}
 		} catch (NumberFormatException e) {
 			e.printStackTrace(); // Print the exception details
 			modelAndView.addObject("message", "Invalid format!");
-			modelAndView.setViewName("redirect:/admin/user/getAll");
+			modelAndView.setViewName("redirect:/admin/submission/getAll");
 		}
 
 		return modelAndView;
 	}
 
 	@GetMapping("/update")
-	public ModelAndView detailUser(HttpServletRequest request) {
-		ModelAndView modelAndView = new ModelAndView("admin/usermanagement");
+	public ModelAndView detailSubmission(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("admin/submission");
 
 		modelAndView.addObject("currentView", "update");
 
 		try {
 			Session session = HibernateCF.getSessionFactory().openSession();
 
-			// User with the given ID doesn't exist, show details for the update form
-			User inst = session.get(User.class, Integer.parseInt(request.getParameter("id")));
+			// Submission with the given ID doesn't exist, show details for the update form
+			Submission inst = session.get(Submission.class, Integer.parseInt(request.getParameter("id")));
 
-			List<User> userList = new ArrayList<>();
-			userList.add(inst);
+			List<Submission> submissionList = new ArrayList<>();
+			submissionList.add(inst);
 
 			modelAndView.addObject("idParam", Integer.parseInt(request.getParameter("id")));
-			modelAndView.addObject("users", userList);
+			modelAndView.addObject("submissions", submissionList);
 
 		} catch (NumberFormatException e) {
 			e.printStackTrace(); // Print the exception details
 			modelAndView.addObject("message", "Invalid format!");
-			modelAndView.setViewName("redirect:/admin/user/getAll");
+			modelAndView.setViewName("redirect:/admin/submission/getAll");
 		}
 
 		return modelAndView;
 	}
 
 	@RequestMapping("/delete")
-	public ModelAndView deleteUser(@RequestParam int id) {
-		ModelAndView modelAndView = new ModelAndView("redirect:/admin/user/getAll");
+	public ModelAndView deleteSubmission(@RequestParam int id) {
+		ModelAndView modelAndView = new ModelAndView("redirect:/admin/submission/getAll");
 
 		Session session = HibernateCF.getSessionFactory().openSession();
-		User user = session.get(User.class, id);
+		Submission submission = session.get(Submission.class, id);
 
-		if (user != null) {
+		if (submission != null) {
 			session.beginTransaction();
-			session.delete(user);
+			session.delete(submission);
 			session.getTransaction().commit();
 			session.close();
 
-			modelAndView.addObject("message", "User (ID: " + id + ") deleted successfully!");
+			modelAndView.addObject("message", "Submission (ID: " + id + ") deleted successfully!");
 		} else {
-			modelAndView.addObject("message", "User with ID " + id + " does not exist.");
+			modelAndView.addObject("message", "Submission with ID " + id + " does not exist.");
 		}
 
 		modelAndView.addObject("currentView", "delete");
 
+		return modelAndView;
+	}
+	
+	@RequestMapping("/leaderboard")
+	public ModelAndView getAllLeaderboard() {
+		SubmissionDAO submissionDao = new SubmissionDAO();
+		ModelAndView modelAndView = new ModelAndView("admin/leaderboard");
+		Session session = HibernateCF.getSessionFactory().openSession();
+
+		List<Submission> submissions = submissionDao.getAllSubmissions();
+
+        // Sort the list in decreasing order based on the total result
+        submissions.sort(Comparator.comparingDouble(Submission::calculateTotalResult).reversed());
+
+		if (submissions.isEmpty()) {
+		    // Handle the case when the list is empty
+		    modelAndView.addObject("errorMessage", "No submissions found.");
+		} else {
+		    // Add the list to the model when it's not empty
+		    modelAndView.addObject("submissions", submissions);
+		}
+
+		modelAndView.addObject("currentView", "getAll");
 		return modelAndView;
 	}
 }

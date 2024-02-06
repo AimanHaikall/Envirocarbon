@@ -53,8 +53,8 @@
 
 		</div>
 		<ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-			<li class="nav-item"><a class="nav-link" href="<c:url value='admin/home' />"> <svg
-						class="nav-icon">
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value='admin/home' />"> <svg class="nav-icon">
               <use
 							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
             </svg> Dashboard
@@ -71,8 +71,9 @@
 							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
             </svg> Submission
 			</a></li>
-			<li class="nav-item"><a class="nav-link" href="<c:url value='admin/leaderboard' />">
-					<svg class="nav-icon">
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value='admin/submission/leaderboard' />"> <svg
+						class="nav-icon">
                 <use
 							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-numbered"></use>
               </svg> Leaderboard
@@ -138,11 +139,252 @@
 			</div>
 		</header>
 
+		<div class="body flex-grow-1 px-3">
+			<div class="container-lg">
+				<div class="row">
+					<div class="col-sm-6 col-lg-3">
+						<div class="card mb-4 text-white bg-primary">
+							<div
+								class="card-body pb-0 d-flex justify-content-between align-items-start">
+								<div>
+									<div class="fs-4 fw-semibold">
+										<c:out value="${totalUser}" />
+										<span class="fs-6 fw-normal"> </span>
+									</div>
+									<div>Total Users</div>
+								</div>
+								<div class="dropdown">
+									<button class="btn btn-transparent text-white p-0"
+										type="button" data-coreui-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false">
+										<svg class="icon">
+                        <use
+												xlink:href="vendors/@coreui/icons/svg/free.svg#cil-options"></use>
+                      </svg>
+									</button>
+									<div class="dropdown-menu dropdown-menu-end">
+										<a class="dropdown-item" href="#">Action</a><a
+											class="dropdown-item" href="#">Another action</a><a
+											class="dropdown-item" href="#">Something else here</a>
+									</div>
+								</div>
+							</div>
+							<div class="c-chart-wrapper mt-3 mx-3" style="height: 70px;">
+								<canvas class="chart" id="card-chart1" height="70"></canvas>
+							</div>
+						</div>
+					</div>
+					<!-- /.col-->
+					<div class="col-sm-6 col-lg-3">
+						<div class="card mb-4 text-white bg-info">
+							<div
+								class="card-body pb-0 d-flex justify-content-between align-items-start">
+								<div>
+									<div class="fs-4 fw-semibold">
+										<c:out value="${sizeWater}" />
+									</div>
+									<div>Water Submission</div>
+								</div>
+								<div class="dropdown">
+									<button class="btn btn-transparent text-white p-0"
+										type="button" data-coreui-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false">
+										<svg class="icon">
+                        <use
+												xlink:href="vendors/@coreui/icons/svg/free.svg#cil-options"></use>
+                      </svg>
+									</button>
+									<div class="dropdown-menu dropdown-menu-end">
+										<a class="dropdown-item" href="#">Action</a><a
+											class="dropdown-item" href="#">Another action</a><a
+											class="dropdown-item" href="#">Something else here</a>
+									</div>
+								</div>
+							</div>
+							<div class="c-chart-wrapper mt-3 mx-3" style="height: 70px;">
+								<canvas class="chart" id="card-chart2" height="70"></canvas>
+							</div>
+						</div>
+					</div>
+					<!-- /.col-->
+					<div class="col-sm-6 col-lg-3">
+						<div class="card mb-4 text-white bg-warning">
+							<div
+								class="card-body pb-0 d-flex justify-content-between align-items-start">
+								<div>
+									<div class="fs-4 fw-semibold">
+
+										<c:out value="${sizeElectric}" />
+									</div>
+									<div>Electric Submissions</div>
+								</div>
+								<div class="dropdown">
+									<button class="btn btn-transparent text-white p-0"
+										type="button" data-coreui-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false">
+										<svg class="icon">
+                        <use
+												xlink:href="vendors/@coreui/icons/svg/free.svg#cil-options"></use>
+                      </svg>
+									</button>
+									<div class="dropdown-menu dropdown-menu-end">
+										<a class="dropdown-item" href="#">Action</a><a
+											class="dropdown-item" href="#">Another action</a><a
+											class="dropdown-item" href="#">Something else here</a>
+									</div>
+								</div>
+							</div>
+							<div class="c-chart-wrapper mt-3" style="height: 70px;">
+								<canvas class="chart" id="card-chart3" height="70"></canvas>
+							</div>
+						</div>
+					</div>
+					<!-- /.col-->
+					<div class="col-sm-6 col-lg-3">
+						<div class="card mb-4 text-white bg-danger">
+							<div
+								class="card-body pb-0 d-flex justify-content-between align-items-start">
+								<div>
+									<div class="fs-4 fw-semibold">
+
+										<c:out value="${sizeRecycle}" />
+										</span>
+									</div>
+									<div>Recyle Submissions</div>
+								</div>
+								<div class="dropdown">
+									<button class="btn btn-transparent text-white p-0"
+										type="button" data-coreui-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false">
+										<svg class="icon">
+                        <use
+												xlink:href="vendors/@coreui/icons/svg/free.svg#cil-options"></use>
+                      </svg>
+									</button>
+									<div class="dropdown-menu dropdown-menu-end">
+										<a class="dropdown-item" href="#">Action</a><a
+											class="dropdown-item" href="#">Another action</a><a
+											class="dropdown-item" href="#">Something else here</a>
+									</div>
+								</div>
+							</div>
+							<div class="c-chart-wrapper mt-3 mx-3" style="height: 70px;">
+								<canvas class="chart" id="card-chart4" height="70"></canvas>
+							</div>
+						</div>
+					</div>
+					<!-- /.col-->
+				</div>
+
+				<!-- /.card.mb-4-->
+				<div class="row">
+					<div class="col-sm-6 col-lg-4">
+						<div class="card mb-4" style="-cui-card-cap-bg: #3b5998">
+							<div class="card-body row text-center">
+								<div class="col">
+									<div class="fs-5 fw-semibold">Water</div>
+									<div class="text-uppercase text-medium-emphasis small">calculation</div>
+								</div>
+								<div class="vr"></div>
+								<div class="col">
+									<div class="fs-5 fw-semibold">
+										<c:out value="${totalWater}"></c:out>
+									</div>
+									<div class="text-uppercase text-medium-emphasis small">unit</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /.col-->
+					<div class="col-sm-6 col-lg-4">
+						<div class="card mb-4" style="-cui-card-cap-bg: #00aced">
+							<div class="card-body row text-center">
+								<div class="col">
+									<div class="fs-5 fw-semibold">Electric</div>
+									<div class="text-uppercase text-medium-emphasis small">calculation</div>
+								</div>
+								<div class="vr"></div>
+								<div class="col">
+									<div class="fs-5 fw-semibold">
+										<c:out value="${totalElectric}"></c:out>
+									</div>
+									<div class="text-uppercase text-medium-emphasis small">units
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /.col-->
+					<div class="col-sm-6 col-lg-4">
+						<div class="card mb-4" style="-cui-card-cap-bg: #4875b4">
+
+							<div class="card-body row text-center">
+								<div class="col">
+									<div class="fs-5 fw-semibold">Recycle</div>
+									<div class="text-uppercase text-medium-emphasis small">calculations</div>
+								</div>
+								<div class="vr"></div>
+								<div class="col">
+									<div class="fs-5 fw-semibold">
+										<c:out value="${totalRecycle}"></c:out>
+									</div>
+									<div class="text-uppercase text-medium-emphasis small">units</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /.col-->
+				</div>
+				<!-- /.row-->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card mb-4">
+							<div class="card-header">User &amp; Submissions</div>
+							<div class="card-body">
+						
+								<!-- /.row-->
+								<br>
+								<div class="table-responsive">
+									<table class="table">
+										<thead>
+											<tr>
+												<th>ID</th>
+												<th>Water</th>
+												<th>Electric</th>
+												<th>Recycle</th>
+												<th>User</th>
+												<th>Total Score</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="submission" items="${submissions}">
+												<tr>
+													<td>${submission.id}</td>
+													<td>${submission.resultWater}</td>
+													<td>${submission.resultElectric}</td>
+													<td>${submission.resultRecycle}</td>
+													<td>${submission.user.name}</td>
+													<td>${submission.calculateTotalResult()}</td>
+
+												</tr>
+											</c:forEach>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /.col-->
+				</div>
+				<!-- /.row-->
+			</div>
+		</div>
 
 		<footer class="footer">
 			<div>
 				<a href="https://coreui.io">CoreUI </a><a href="https://coreui.io">Bootstrap
-					Admin Template</a> © 2023 creativeLabs.
+					Admin Template</a> Â© 2023 creativeLabs.
 			</div>
 			<div class="ms-auto">
 				Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI UI

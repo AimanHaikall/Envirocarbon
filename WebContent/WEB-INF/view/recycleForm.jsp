@@ -174,7 +174,7 @@
 							<div>
 								<div
 									class="card-header position-relative d-flex justify-content-center align-items-center">
-									<label for="weightRm" class="form-label"><h4>3. Current
+									<label for="weightRm" class="form-label"><h4>2. Current
 											Recycle weight values (RM) :</h4></label>
 								</div>
 								<div class="card-body row text-center">

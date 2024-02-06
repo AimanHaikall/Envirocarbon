@@ -3,7 +3,7 @@
 <%@ page import="javax.servlet.http.HttpSession"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="username" value="${sessionScope.adminUsername}" />
+<c:set var="recycle" value="${sessionScope.adminRecycle}" />
 <c:set var="user" value="${sessionScope.admin}" />
 
 <!DOCTYPE html>
@@ -137,112 +137,44 @@
 				</nav>
 			</div>
 		</header>
-		<div class="container">
-			<form action="<c:url value='/admin/user/getById'/>" method="get"
-				class="d-flex align-items-center">
-				<div>
-					<label for="id" class="form-label me-2">Search ID:</label>
-				</div>
-				<div>
-					<div class="row">
-						<div class="col-md-6">
-							<input type="text" name="id" class="form-control">
-						</div>
-						<div class="col-md-6">
-							<button class="btn btn-primary ms-1" type="submit">Search</button>
-						</div>
-					</div>
 
-				</div>
 
-			</form>
+<div class="container">
 			<table class="table">
 				<thead>
 					<tr>
 						<th>ID</th>
-						<th>Name</th>
-						<th>Phone Number</th>
-						<th>Username</th>
-						<th>Email</th>
-						<th>Password</th>
+						<th>Water</th>
+						<th>Electric</th>
+						<th>Recycle</th>
+						<th>User</th>
+						<th>Total Score</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="user" items="${users}">
+					<c:forEach var="submission" items="${submissions}">
 						<tr>
-							<td>${user.id}</td>
-							<td>${user.name}</td>
-							<td>${user.phoneNum}</td>
-							<td>${user.username}</td>
-							<td>${user.email}</td>
-							<td>${user.password}</td>
+							<td>${submission.id}</td>
+							<td>${submission.resultWater}</td>
+							<td>${submission.resultElectric}</td>
+							<td>${submission.resultRecycle}</td>
+							<td><a href="<c:url value="admin/user/getById?id=${submission.user.id}"/>">${submission.user.username}</a></td>
+							<td>${submission.calculateTotalResult()}</td>
 							<td><a class="btn btn-primary"
-								href="<c:url value='/admin/user/update?id=${user.id}'/>">Update</a>
+								href="<c:url value='/admin/submission/getById?id=${submission.id}'/>">View</a>
+								<a class="btn btn-primary"
+								href="<c:url value='/admin/submission/update?id=${submission.id}'/>">Update</a>
 								<a class="btn btn-danger"
-								href="<c:url value='/admin/user/delete?id=${user.id}'/>">Delete</a>
+								href="<c:url value='/admin/submission/delete?id=${submission.id}'/>">Delete</a>
 							</td>
 						</tr>
 					</c:forEach>
 
-					<c:if
-						test="${currentView ne 'update' and currentView ne 'getById'}">
-						<tr>
-							<td colspan="1"></td>
-							<td>
-								<form action="<c:url value='/admin/user/add'/>" method="post"
-									class="d-flex">
-									<label for="name" class="form-label me-2">Name:</label> <input
-										type="text" name="name" class="form-control" required>
-							</td>
-							<td><label for="phoneNum" class="form-label mx-2">Phone
-									Num:</label> <input type="text" name="phoneNum" class="form-control"
-								required></td>
-							<td><label for="username" class="form-label mx-2">Username:</label>
-								<input type="text" name="username" class="form-control" required></td>
-							<td><label for="email" class="form-label mx-2">Email:</label>
-								<input type="email" name="email" class="form-control" required></td>
-							<td><label for="password" class="form-label mx-2">Password:</label>
-								<input type="text" name="password" class="form-control" required></td>
-							<td>
-								<button class="btn btn-outline-primary" style="height: 70px;"
-									type="submit">Add User</button>
-
-							</td>
-							</form>
-
-						</tr>
-					</c:if>
-
-					<c:if test="${currentView eq 'update'}">
-						<tr>
-							<form action="<c:url value='/admin/user/update'/>" method="post">
-								<input type="hidden" name="id" value="${idParam}">
-								<td></td>
-								<td><label for="newName" class="form-label">New
-										Name:</label><input type="text" name="newName" class="form-control"></td>
-								<td><label for="newPhoneNum" class="form-label mx-2">New
-										Phone Num:</label> <input type="text" name="newPhoneNum"
-									class="form-control"></td>
-								<td><label for="newUsername" class="form-label mx-2">New
-										Username:</label> <input type="text" name="newUsername"
-									class="form-control"></td>
-								<td><label for="newEmail" class="form-label">New
-										Email:</label><input type="text" name="newEmail" class="form-control"></td>
-
-								<td><label for="newPassword" class="form-label">New
-										Password:</label><input type="text" name="newPassword"
-									class="form-control"></td>
-								<td>
-									<button class="btn btn-success" type="submit" style="height:70px">Update
-										User</button>
-								</td>
-							</form>
-						</tr>
-					</c:if>
 				</tbody>
 			</table>
 		</div>
+
 
 		<footer class="footer">
 			<div>

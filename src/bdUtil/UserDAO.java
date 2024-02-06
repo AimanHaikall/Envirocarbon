@@ -108,5 +108,21 @@ public class UserDAO {
 
 		return count != null && count > 0;
 	}
+	
+	public long getTotalUser() {
+	    try (Session session = HibernateCF.getSessionFactory().openSession()) {
+	        CriteriaBuilder builder = session.getCriteriaBuilder();
+	        CriteriaQuery<Long> criteriaQuery = builder.createQuery(Long.class);
+	        Root<User> root = criteriaQuery.from(User.class);
+
+	        criteriaQuery.select(builder.count(root));
+
+	        return session.createQuery(criteriaQuery).uniqueResult();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return -1; // or throw an exception, depending on your requirements
+	    }
+	}
+
 
 }
