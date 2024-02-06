@@ -2,6 +2,8 @@ package com.controller;
 
 import java.util.function.Supplier;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +26,18 @@ public class RegisterController {
 		this.registerDao = new UserDAO();
 	}
 
-	@GetMapping
-	public String showLoginForm() {
+	@GetMapping()
+	public String showLoginForm(HttpSession session) {
+		
+		if (session.getAttribute("adminUsername") != null) {
+			return "redirect:/admin/home";
+	    }
+	    
+	    // Check if a user is already authenticated
+	    if (session.getAttribute("username") != null) {
+	    	return"redirect:/home";
+	    }
+
 		return "register";
 	}
 

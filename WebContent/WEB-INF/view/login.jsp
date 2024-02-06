@@ -47,19 +47,13 @@
 								<h1>Login</h1>
 								<form action="<c:url value='/login'/>" method="post">
 									<p class="text-medium-emphasis">Sign In to your account</p>
-									<div class="input-group mb-3">
-										<span class="input-group-text"> <svg class="icon">
-                <use
-													xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-            </svg>
+									<div class="input-group mb-4">
+										<span class="input-group-text"> 
 										</span> <input class="form-control" type="text"
 											placeholder="Username" name="username">
 									</div>
 									<div class="input-group mb-4">
-										<span class="input-group-text"> <svg class="icon">
-                <use
-													xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
-            </svg>
+										<span class="input-group-text"> 
 										</span> <input class="form-control" type="password"
 											placeholder="Password" name="password">
 									</div>

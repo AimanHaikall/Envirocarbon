@@ -2242,7 +2242,7 @@ html:not([dir=rtl]) .offset-11 {
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.0;
   color: var(--cui-input-color, rgba(44, 56, 74, 0.95));
   background-color: var(--cui-input-bg, #fff);
   background-clip: padding-box;

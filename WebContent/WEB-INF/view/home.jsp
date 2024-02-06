@@ -187,13 +187,13 @@
 				</div>
 				<div class="col-md-4">
 					<div class="statistics-container">
-						<h2>GHG Emissions</h2>
-						<p>Stationary Energy: xx</p>
-						<p>Transportation: xx</p>
-						<p>Waste: xx</p>
-						<h2>Carbon Emission Status</h2>
-						<p>2019 : xx</p>
-						<p>2020 : xx</p>
+					<h2>MBIP Tracker</h2><br/>
+						<h3>Water Emissions</h3>
+						<p>Total : <c:out value = "${totalWater }"/></p>
+						<h3>ElectricEmissions</h3>
+						<p>Total : <c:out value = "${totalElectric}"/></p>
+						<h3>Recycle Emissions</h3>
+						<p>Total : <c:out value = "${totalRecycle}"/></p>
 					</div>
 				</div>
 			</div>

@@ -7,10 +7,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.model.Submission;
 import com.model.User;
 import com.model.Water;
 
 import bdUtil.HibernateCF;
+import bdUtil.SubmissionDAO;
+
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,14 +23,35 @@ import javax.servlet.http.HttpSession;
 public class UserController {
 
 	@GetMapping("/home")
-	public String userHomePage(HttpSession session) {
+	public ModelAndView userHomePage(HttpSession session) {
+		SubmissionDAO submissionDao = new SubmissionDAO();
+		ModelAndView mav = new ModelAndView();
 		// Check if the user is logged in
 		if (session.getAttribute("username") != null) {
+			double totalWater = 0;
+			double totalElectric = 0;
+			double totalRecycle = 0;
+			List<Submission> submissions = submissionDao.getAllSubmissions();
+			for (Submission submission : submissions) {
+				totalWater += submission.getResultWater();
+				totalElectric += submission.getResultElectric();
+				totalRecycle += submission.getResultRecycle();
+			}
+			mav.addObject("totalWater", totalWater);
+			mav.addObject("totalElectric", totalElectric);
+			mav.addObject("totalRecycle", totalRecycle);
 			// User is logged in, proceed to user home page
-			return "home";
-		} else {
+			mav.setViewName("home");
+			return mav;
+		}
+		else if (session.getAttribute("adminUsername") != null) {
+			// User is logged in, proceed to user home page
+			mav.setViewName("redirect:/admin/home");
+			return mav;
+		}  else {
 			// User is not logged in, redirect to login page or another page
-			return "/login";
+			mav.setViewName("/login");
+			return mav;
 		}
 	}
 
