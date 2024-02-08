@@ -63,7 +63,7 @@
 <c:if test="${not empty msg}">
 <script type="text/javascript">
     
-        alert("Your submission is less than 6 entries. Please add more to submit.");
+        alert('Your submission is less than 6 entries. Please add more to submit.');
     
     </script>
     </c:if>
@@ -195,7 +195,7 @@
 														<a href="<c:url value='/electric/update/${record.id}'/>"
 															class="btn btn-primary">Update</a> <a
 															href="<c:url value='/electric/delete/${record.id}'/>"
-															class="btn btn-danger">Delete</a>
+															class="btn btn-danger" onclick="confirm('Confirm delete?')">Delete</a>
 													</div>
 												</td>
 

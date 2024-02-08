@@ -43,7 +43,7 @@ public class SubmissionController {
 	        List<Submission> submissions = submissionDao.getAllSubmissions();
 
 	        // Sort the list in decreasing order based on the total result
-	        submissions.sort(Comparator.comparingDouble(Submission::calculateTotalResult).reversed());
+	        submissions.sort(Comparator.comparingDouble(Submission::calculateTotalResult));
 
 	        // Add the sorted list to the ModelAndView
 	        mav.addObject("submissions", submissions);

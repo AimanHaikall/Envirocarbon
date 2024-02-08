@@ -48,12 +48,12 @@
 								<form action="<c:url value='/login'/>" method="post">
 									<p class="text-medium-emphasis">Sign In to your account</p>
 									<div class="input-group mb-4">
-										<span class="input-group-text"> 
+										
 										</span> <input class="form-control" type="text"
 											placeholder="Username" name="username">
 									</div>
 									<div class="input-group mb-4">
-										<span class="input-group-text"> 
+										 
 										</span> <input class="form-control" type="password"
 											placeholder="Password" name="password">
 									</div>

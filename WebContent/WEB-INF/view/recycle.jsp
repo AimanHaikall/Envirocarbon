@@ -166,7 +166,7 @@
                               <td >
                                 <div>
                         			<a href="<c:url value='/recycle/update/${record.id}'/>" class="btn btn-primary">Update</a>
-                        			<a href="<c:url value='/recycle/delete/${record.id}'/>" class="btn btn-danger">Delete</a>
+                        			<a href="<c:url value='/recycle/delete/${record.id}'/>" class="btn btn-danger" onclick="confirm('Confirm delete?')">Delete</a>
                     			</div>
                               </td>
                              

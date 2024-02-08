@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="javax.servlet.http.HttpSession"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <c:set var="username" value="${sessionScope.username}" />
 <c:set var="user" value="${sessionScope.user}" />
@@ -189,12 +190,13 @@
 					<div class="statistics-container">
 					<h2>MBIP Tracker</h2><br/>
 						<h3>Water Emissions</h3>
-						<p>Total : <c:out value = "${totalWater }"/></p>
+						<p>Total : <fmt:formatNumber value="${totalWater}" pattern="#,##0.00" /></p>
 						<h3>ElectricEmissions</h3>
-						<p>Total : <c:out value = "${totalElectric}"/></p>
+						<p>Total : <fmt:formatNumber value="${totalElectric}" pattern="#,##0.00" /></p>
 						<h3>Recycle Emissions</h3>
-						<p>Total : <c:out value = "${totalRecycle}"/></p>
+						<p>Total : <fmt:formatNumber value="${totalRecycle}" pattern="#,##0.00" /></p>
 					</div>
+					
 				</div>
 			</div>
 		</div>
